@@ -1,167 +1,106 @@
-# Data-Science---2025Data Science Portfolio Repository
+# Data Science Portfolio Repository
 
-Welcome to my Data Science Portfolio! This repository serves as a showcase of my projects, code, and experiments in the field of data science and analytics. Here, you'll find work involving various tools, technologies, and techniques that I’ve employed in real-world applications and learning exercises.
+Welcome to my Data Science Portfolio! This repository serves as a showcase of my projects, code, and experiments in the field of data science and analytics. Here, you'll find work involving various topics.
 
-Table of Contents
+## Table of Contents
 
-About This Repository
+- [About This Repository](#about-this-repository)
+- [Project Categories](#project-categories)
+  - [SQL Projects](#sql-projects)
+  - [Power BI & Visualization](#power-bi--visualization)
+  - [Dockerized Projects](#dockerized-projects)
+  - [Apache Airflow](#apache-airflow)
+  - [Fabric (Automation)](#fabric-automation)
+  - [Data Science with Python](#data-science-with-python)
+- [Technologies Used](#technologies-used)
+- [How to Use](#how-to-use)
+- [Future Enhancements](#future-enhancements)
+- [Contributing](#contributing)
+- [License](#license)
 
-Project Categories
-
-SQL Projects
-
-Power BI & Visualization
-
-Dockerized Projects
-
-Apache Airflow
-
-Fabric (Automation)
-
-Data Science with Python
-
-Technologies Used
-
-How to Use
-
-Future Enhancements
-
-Contributing
-
-License
-
-About This Repository
+## About This Repository
 
 This repository is a central hub for my data science projects and tools. It includes:
 
-SQL scripts for querying and analyzing data.
-
-Python notebooks and scripts showcasing data manipulation, visualization, and machine learning.
-
-End-to-end data pipeline setups using Docker and Apache Airflow.
-
-Business intelligence dashboards and reports created using Power BI.
-
-Automation scripts for data workflows using Fabric.
+- SQL scripts for querying and analyzing data.
+- Python notebooks and scripts showcasing data manipulation, visualization, and machine learning.
+- End-to-end data pipeline setups using Docker and Apache Airflow.
+- Business intelligence dashboards and reports created using Power BI.
+- Automation scripts for data workflows using Fabric.
 
 My goal is to demonstrate practical solutions, share insights, and continually improve my skills in the domain of data science and analytics.
 
-Project Categories
+## Project Categories
 
-SQL Projects
+### SQL Projects
 
 Contains SQL scripts for:
 
-Data cleaning and transformation.
+- Data cleaning and transformation.
+- Writing complex queries for business insights.
+- Database design and optimization.
+- Sample databases and their documentation.
 
-Writing complex queries for business insights.
+Location: `./sql`
 
-Database design and optimization.
-
-Sample databases and their documentation.
-
-Location: ./sql
-
-Power BI & Visualization
+### Power BI & Visualization
 
 Includes:
 
-Interactive dashboards created in Power BI.
+- Interactive dashboards created in Power BI.
+- Data storytelling projects.
+- Analysis and insights through visualizations.
 
-Data storytelling projects.
+Location: `./power-bi`
 
-Analysis and insights through visualizations.
-
-Location: ./power-bi
-
-Dockerized Projects
+### Dockerized Projects
 
 Showcases:
 
-Dockerized setups for reproducible data science environments.
+- Dockerized setups for reproducible data science environments.
+- Examples of how Docker can simplify complex dependencies and deployments.
 
-Examples of how Docker can simplify complex dependencies and deployments.
+Location: `./docker`
 
-Location: ./docker
-
-Apache Airflow
+### Apache Airflow
 
 Examples of workflows and DAGs:
 
-Automated ETL pipelines.
+- Automated ETL pipelines.
+- Task scheduling and dependency management.
 
-Task scheduling and dependency management.
+Location: `./airflow`
 
-Location: ./airflow
-
-Fabric (Automation)
+### Fabric (Automation)
 
 Scripts for:
 
-Automating repetitive tasks in data workflows.
+- Automating repetitive tasks in data workflows.
+- Deploying and managing data science projects.
 
-Deploying and managing data science projects.
+Location: `./fabric`
 
-Location: ./fabric
-
-Data Science with Python
+### Data Science with Python
 
 Projects and experiments using Python for:
 
-Data wrangling and preprocessing.
+- Data wrangling and preprocessing.
+- Machine learning and statistical modeling.
+- Exploratory data analysis and visualization.
 
-Machine learning and statistical modeling.
+Location: `./python`
 
-Exploratory data analysis and visualization.
-
-Location: ./python
-
-Technologies Used
+## Technologies Used
 
 This repository leverages a variety of tools and frameworks, including:
 
-Languages: Python, SQL
+- **Languages**: Python, SQL
+- **Tools**: Power BI, Docker, Apache Airflow, Fabric
+- **Libraries**: Pandas, NumPy, Matplotlib, Scikit-learn, Seaborn
+- **Databases**: MySQL, PostgreSQL
 
-Tools: Power BI, Docker, Apache Airflow, Fabric
+## How to Use
 
-Libraries: Pandas, NumPy, Matplotlib, Scikit-learn, Seaborn
-
-Databases: MySQL, PostgreSQL
-
-How to Use
-
-Clone the repository:
-
-git clone https://github.com/your-username/your-repo-name.git
-
-Navigate to the desired project folder.
-
-Follow the README or documentation within each folder for specific instructions.
-
-Future Enhancements
-
-Adding more advanced machine learning models and experiments.
-
-Expanding Docker and Apache Airflow use cases.
-
-Developing tutorials for beginners based on these projects.
-
-Integration with cloud platforms like AWS, GCP, or Azure.
-
-Contributing
-
-Contributions are welcome! If you have ideas or improvements, feel free to:
-
-Fork the repository.
-
-Create a new branch: git checkout -b feature/your-feature
-
-Commit your changes: git commit -m 'Add some feature'
-
-Push to the branch: git push origin feature/your-feature
-
-Open a pull request.
-
-License
-
-This repository is licensed under the MIT License. Feel free to use and adapt the code for your own projects.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
