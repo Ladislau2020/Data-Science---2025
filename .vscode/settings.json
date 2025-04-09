@@ -16,6 +16,19 @@
             "name": "Ladislau\\SQLEXPRESS",
             "username": "LADISLAU\\Ladislau André",
             "password": "Hautodidata32@elley"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Local instance mysql",
+            "database": "banking_case",
+            "username": "Ladislau"
         }
     ]
 }
