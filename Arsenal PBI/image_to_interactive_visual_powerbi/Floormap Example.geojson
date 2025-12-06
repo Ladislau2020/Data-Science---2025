@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"name": "Floormap Example",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 1, "room": "Menswear" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 83.07242569, -4.229599920838354 ], [ 83.07242569, -179.00000007 ], [ 493.917351904665111, -179.00000007 ], [ 494.0, -4.000000000000646 ], [ 83.07242569, -4.229599920838354 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": 2, "room": "Womanwear" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 6.999999934765654, -184.99999974 ], [ 278.757303980000017, -184.99999974 ], [ 278.757303980000017, -525.0 ], [ 7.000000000046115, -525.0 ], [ 6.999999934765654, -184.99999974 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": 3, "room": "Kidswear" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 284.0, -184.99999974 ], [ 494.0, -184.99999974 ], [ 494.0, -525.0 ], [ 284.0, -525.0 ], [ 284.0, -184.99999974 ] ] ] ] } }
+]
+}
