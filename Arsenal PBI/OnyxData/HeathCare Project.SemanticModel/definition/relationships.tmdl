@@ -1,0 +1,18 @@
+relationship AutoDetected_cc8e8347-d21b-4f5b-a8e1-580cef3ec7ec
+	fromColumn: Data.Hospital
+	toColumn: 'Photo Links'.Hospital
+
+relationship 8d1726da-6d05-4d1c-9c03-7938bf6a4fe2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DateT.Date
+	toColumn: LocalDateTable_d32b2bdd-bac1-4150-b8dc-09770995d531.Date
+
+relationship 8f860d84-6241-52ff-0f65-a34b673e035d
+	fromColumn: Data.'Date of Admission'
+	toColumn: DateT.Date
+
+relationship 8617cc0f-9146-495f-81c8-c0b0e860077e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Data.'Discharge Date'
+	toColumn: LocalDateTable_50c58b3f-5d7b-434f-92cf-81ea917b1496.Date
+

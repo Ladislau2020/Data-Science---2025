@@ -1,0 +1,72 @@
+table Importações
+	lineageTag: 3c37d019-a878-4f24-a99f-c6af03e8a99b
+
+	measure 'Total em Importações' = SUM('Importações'[Valor])
+		formatString: #,0.00\ "Kz";-#,0.00\ "Kz";#,0.00\ "Kz"
+		lineageTag: 5de71e1f-7d1c-46a0-b5a4-f776a5424f40
+
+		annotation PBI_FormatHint = {"currencyCulture":"ln-AO"}
+
+	measure 'Qtde de Importações' = CALCULATE(COUNT('Importações'[Valor]), 'Importações'[Valor])
+		formatString: 0
+		lineageTag: 96fe49ef-912b-4760-82b6-4e93a38070f7
+
+	column País
+		dataType: string
+		lineageTag: 61bd2b03-a971-4bb0-abe6-01ef3fcefcec
+		summarizeBy: none
+		sourceColumn: País
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fec354cb-fa55-495c-be8c-fd046481f0c6
+		summarizeBy: none
+		sourceColumn: Ano
+
+		variation Variation
+			isDefault
+			relationship: a9eed5ea-8ade-4d36-a862-1a4ab4d54cee
+			defaultHierarchy: LocalDateTable_d91a1465-d419-404d-852c-c8e8258c1b22.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Valor
+		dataType: decimal
+		formatString: #,0.00\ "Kz";-#,0.00\ "Kz";#,0.00\ "Kz"
+		lineageTag: 7d7259f7-596a-456e-a9d2-d0da6496ffa4
+		summarizeBy: sum
+		sourceColumn: Valor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"ln-AO"}
+
+	partition Importações-19e11d50-afa7-4c58-b882-373b02390877 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\DELL~\Documents\Power BI\Projects\National Projects\Balanços\Países\Balanço comercial Países.xlsx"), null, true),
+				    BC_Kz_Sheet = Source{[Item="BC_Kz",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(BC_Kz_Sheet,{{"Column1", type text}, {"Column2", type any}, {"Column3", type number}, {"Column4", type number}, {"Column5", type number}, {"Column6", type number}, {"Column7", type any}, {"Column8", type any}, {"Column9", type number}, {"Column10", type number}, {"Column11", type number}, {"Column12", type number}, {"Column13", type any}, {"Column14", type any}, {"Column15", type number}, {"Column16", type number}, {"Column17", type number}, {"Column18", type number}, {"Column19", type number}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type any}, {"Column24", type any}, {"Column25", type any}, {"Column26", type any}, {"Column27", type any}}),
+				    #"Removed Top Rows" = Table.Skip(#"Changed Type",8),
+				    #"Removed Columns" = Table.RemoveColumns(#"Removed Top Rows",{"Column2", "Column3", "Column4", "Column5", "Column6", "Column7", "Column14", "Column15", "Column16", "Column17", "Column18", "Column19", "Column20", "Column21", "Column22", "Column23", "Column24", "Column25", "Column26", "Column27"}),
+				    #"Removed Top Rows1" = Table.Skip(#"Removed Columns",1),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows1", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Column1", type text}, {"2015", type number}, {"2016", type number}, {"2017", type number}, {"2018", type number}, {"2019", type number}, {"2020", type any}}),
+				    #"Removed Top Rows2" = Table.Skip(#"Changed Type1",2),
+				    #"Unpivoted Other Columns" = Table.UnpivotOtherColumns(#"Removed Top Rows2", {"Column1"}, "Attribute", "Value"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Unpivoted Other Columns",{{"Attribute", "Ano"}, {"Column1", "País"}, {"Value", "Valor"}}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Renamed Columns",{{"Ano", type date}, {"Valor", Currency.Type}}),
+				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Changed Type2", {{"Valor", 0}})
+				in
+				    #"Replaced Errors"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

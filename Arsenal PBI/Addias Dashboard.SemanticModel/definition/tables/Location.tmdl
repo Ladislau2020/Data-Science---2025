@@ -1,0 +1,52 @@
+table Location
+	lineageTag: bc4eecc9-dfcf-4219-83e0-7acb256a358b
+
+	column Region
+		dataType: string
+		lineageTag: 9886b111-1992-4af0-8fb9-f78604cef3f3
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 07248a0b-595c-46de-8698-5551725367e0
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 73123a30-e6fd-4744-8ef8-56cf1beec19f
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationKey
+		dataType: string
+		lineageTag: c02f77bc-7de8-4578-8229-8a2dd8e23dd2
+		summarizeBy: none
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Location = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Ladislau André\OneDrive - University of the People\Documentos\Power BI Course Resources-20241028T211906Z-001\Power BI Course Resources\Adidas US Datasets.xlsx"), null, true),
+				    Location_Sheet = Source{[Item="Location",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Location_Sheet,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}}),
+				    #"Removed Top Rows" = Table.Skip(#"Changed Type",3),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Region", type text}, {"State", type text}, {"City", type text}, {"LocationKey", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

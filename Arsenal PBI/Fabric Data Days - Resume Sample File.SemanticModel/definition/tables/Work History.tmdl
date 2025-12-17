@@ -1,0 +1,183 @@
+table 'Work History'
+	lineageTag: deae98f7-122d-467b-8d20-63ea2e311f34
+
+	measure 'Responsibility Display' = IF(ISFILTERED('Work History'[Company]), MIN('Work History'[Responsibility 1]), "Select a Company/Role to see Key Responsibilities")
+		lineageTag: cab5b430-1956-4cf6-b6fd-fd7bf055ca69
+
+	column Company
+		dataType: string
+		lineageTag: 2f806339-77af-4074-8d14-c368f96ca2c9
+		summarizeBy: none
+		sourceColumn: Company
+
+		annotation SummarizationSetBy = Automatic
+
+	column Role
+		dataType: string
+		lineageTag: fb295feb-759f-480d-81f2-aee3d26170c0
+		summarizeBy: none
+		sourceColumn: Role
+		sortByColumn: 'Start Date'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Responsibility 1'
+		dataType: string
+		lineageTag: f4848acb-7450-4a1c-a882-41b2580c0b65
+		summarizeBy: none
+		sourceColumn: Responsibility 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Responsibility 2'
+		dataType: string
+		lineageTag: 38c59ea2-c5d7-469e-ab6f-ce07664dd53b
+		summarizeBy: none
+		sourceColumn: Responsibility 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Responsibility 3'
+		dataType: string
+		lineageTag: 9eddcca6-68b1-4161-bb47-0a11c90cf40d
+		summarizeBy: none
+		sourceColumn: Responsibility 3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0284cd23-65c0-45c7-8a37-c781449d5016
+		summarizeBy: none
+		sourceColumn: Start Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'End Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9eea7235-8197-4a08-aaea-1771f2a88c97
+		summarizeBy: none
+		sourceColumn: End Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Location City'
+		dataType: string
+		lineageTag: 1bd587c5-c8b7-4469-8bec-5990ceeb55f9
+		summarizeBy: none
+		sourceColumn: Location City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Location Country'
+		dataType: string
+		lineageTag: 6d0a3e98-1df8-4007-a5d3-5a1e091bcee3
+		summarizeBy: none
+		sourceColumn: Location Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Duration (years)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0604c9e9-398c-4449-aff5-13cdb4a5f16d
+		summarizeBy: sum
+		sourceColumn: Duration (years)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Skill 1'
+		dataType: string
+		isHidden
+		lineageTag: 1817f450-dd16-433f-8db8-f39d25135a50
+		summarizeBy: none
+		sourceColumn: Skill 1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Skill 2'
+		dataType: string
+		isHidden
+		lineageTag: ed936623-4c4a-4f6c-8e94-5192f3e24341
+		summarizeBy: none
+		sourceColumn: Skill 2
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Skill 3'
+		dataType: string
+		isHidden
+		lineageTag: 738472fd-baca-4d14-a0c3-cd3223657d51
+		summarizeBy: none
+		sourceColumn: Skill 3
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Skill 4'
+		dataType: string
+		isHidden
+		lineageTag: 3756fd5a-69fc-430a-9366-2a72b021307c
+		summarizeBy: none
+		sourceColumn: Skill 4
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Skill 5'
+		dataType: string
+		isHidden
+		lineageTag: b491c9fa-1d71-4551-9b84-3c9a65b0047d
+		summarizeBy: none
+		sourceColumn: Skill 5
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column WorkID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: bb3e9e3c-b027-471b-889e-25fc5d174e74
+		summarizeBy: none
+		sourceColumn: WorkID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Work History-97c2d99c-8a39-4941-a07d-3db83ee1978a' = m
+		mode: import
+		queryGroup: 'Add your data to these queries'
+		source =
+				let
+				    // Click on the gear to enter source data. Do not rename columns or the remaining steps will break.
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("lVXbbhs3EP0VQs+yZSmtkz7K1qVC7cawkwao6weKO1oR4ZILXuQ6T/2N/l6/JGfIXUl2nBYFtBCXO5zLmXOG9/eD8Wg8mpyN3wyGg8lo8o7XP2B9ra0O0T8JtxFXTkkjlm5H3jZko5C2ErfJY3NGOzKu5V0c+kBqazUbT6udDs5j7xfpna0lu5RGPmos8keqRNzSsVdEKiZCW4HYZGtYWG3rbNlIK2tiy6Fovau9bETjrI7Oswnn5Kl1PvIbfPGZGdegVRSXLlmljYhOrClG8rANrcMZ7JSo//z1dxA1WUJd+gvS+3n122i6mt0JanVFjVanyL0rGJ8rGeVaBhJblwLH1HbjfCOjdlZsvGvE+J2okIC2SKA+1IlHR00hpxy91BbeQpSbjcBJdisS3MJZ55KDkdKBHTfyM2JxJlMV8UEGYbQE1pYLeySyYvn+Ortukom6NSQqZ+FrHxb5mFRxxh9/XV3OF0MxW6xm+chy9fswLwDwDkUjv31LZQgoRloFh8n3XYFh6wI+Vwcm8KaiEDJePUrVM6bc9p1iXjxv4nwnTcoo4hv/Hob3gzeFpczM87L88dCMHHNq0FWLczsKQ7GyuVvfdQ1COA8MZMwkvdIGJH2kY5Z+cv4zAFDGBTJP4lHHba54QR11FykmT0AIRGTvQf8pTJZKK30Ej4TztbT6S44YmGmeqgT81FYbbnmysU9NNww5CZtAWLY/8WQkd3hNW7nTzqOqnIMEM1QKzJXnssh+mDkgvzK66xr2lGuaBCCeMrlOjxXIucN8MukIqDsCKmcMKc5jeFDVcB+BudlrsMucMzgVjCWDJlupOOA6odIiDlRVupNPX/+Rzs4m5/OebdlVyYGr1KW4YwCzZUaggIy4Jkdl9x3iwOjA7satNbP/eT19DT05BZBIrPiecsfUvElro5UILWXZ/RdZmanno0lPz7eFqT9hOecAEOhWLA3U4MUNVYADs0nkEbPAfKp6P3cYeoBo1c8TFcT7zUYrYqp+kgHo1JE7M7vExse7aYc6IxYADZ2klrs6X95MF3msdaxgg2utvAtuE8UFjy3IFIEiGaMx+8DNFqzjuD3brKCm3Uponxn3bWPhdu1g2OkbPcjAkK1OEJXfOF4oitlXedppezi4fOkxXz59jjfuEWBdrF7ZnLZteNGu3IC3pQGM+nhcbrTJGV4uTCJxK0PMML5e/BXJiuXhTYF4D283DPZD4MhZERHEvSXTCgvlgs4bXeR4NPYhSfwFnuB01BDtC0PXTz2EjGpwJpWpUe6WQ/HrPnF9nHh0zoQsv/LLzG5cRaYg8yrT82bJkMf6d5qRQR1PMpczkMe96L0UNYPLGKzIC+X2F+W/cHZGQdfY6uoulxauw4hHGJI+3/24qF3yqp8beyBexM0XlTOuxhV3YNf/YdI32yk6yI9enwOoETN5q9vBw8NX", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Start Date" = _t, #"End Date" = _t, Company = _t, Role = _t, #"Location City" = _t, #"Location Country" = _t, #"Responsibility 1" = _t, #"Responsibility 2" = _t, #"Responsibility 3" = _t, #"Skill 1" = _t, #"Skill 2" = _t, #"Skill 3" = _t, #"Skill 4" = _t, #"Skill 5" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"End Date", type date}, {"Start Date", type date}}),
+				    Custom1 = Table.AddColumn(#"Changed Type", "Duration (years)", (each if ([End Date] = null) then
+				  Number.Round(Duration.TotalDays((Date.From(DateTime.LocalNow()) - [Start Date])) / 365)
+				else
+				  Number.Round(Duration.TotalDays([End Date] - [Start Date]) / 365)), Int64.Type),
+				    #"Added Index" = Table.AddIndexColumn(Custom1, "WorkID", 1, 1, Int64.Type)
+				in
+				    #"Added Index"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

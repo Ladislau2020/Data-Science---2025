@@ -1,0 +1,67 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "9c04d0870174f781aee5",
+  "position": {
+    "x": 599.13300492610847,
+    "y": 375.7192118226601,
+    "z": 5000,
+    "height": 89,
+    "width": 160,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Andrew Sommer",
+                    "textStyle": {
+                      "fontSize": "14pt",
+                      "color": "#154734"
+                    },
+                    "url": "https://www.linkedin.com/in/andrewjamessommer/"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Chief Data Officer-"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Missouri University of Science & Technology"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

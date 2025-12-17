@@ -1,0 +1,67 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "a3bd45b5cb60d20659ce",
+  "position": {
+    "x": 952.13300492610847,
+    "y": 375.7192118226601,
+    "z": 7000,
+    "height": 70,
+    "width": 186,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Shannon Lindsay",
+                    "textStyle": {
+                      "fontSize": "14pt",
+                      "color": "#154734"
+                    },
+                    "url": "https://www.linkedin.com/in/shannonrlindsay/"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Program Manager-"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Microsoft"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

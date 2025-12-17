@@ -1,0 +1,78 @@
+table Certifications
+	lineageTag: 80367fa8-83fd-4953-be98-77d8bdbcc4e3
+
+	column Certification
+		dataType: string
+		lineageTag: e027a08a-7e92-4755-be12-3fcdb0018551
+		summarizeBy: none
+		sourceColumn: Certification
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issued by'
+		dataType: string
+		lineageTag: b2fb9fe6-2b32-4879-906d-de891b8f1184
+		summarizeBy: none
+		sourceColumn: Issued by
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issued on'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8606a533-7c07-405e-9cf4-7c469adbccda
+		summarizeBy: none
+		sourceColumn: Issued on
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Expires
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 56e23fa2-9b30-48c1-b69c-eff53b124e23
+		summarizeBy: none
+		sourceColumn: Expires
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Years Certified'
+		dataType: int64
+		formatString: 0
+		lineageTag: b21a7549-05f0-4cdd-a989-0a62d993a87f
+		summarizeBy: sum
+		sourceColumn: Years Certified
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Badge URL'
+		dataType: string
+		lineageTag: 76308804-94e5-49da-b7cb-1cc74bb9cf68
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: Badge URL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Certifications-3be0bf7f-c630-48ea-b295-7314b3a09bc5 = m
+		mode: import
+		queryGroup: 'Add your data to these queries'
+		source =
+				let
+				    // Click on the gear to enter source data. Do not rename columns or the remaining steps will break.
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("ldLNisIwEADgVyk9G/PTNG28uazCHmQXPIqHJJ24gdqWJrLq029WbREXD0ISJmQYPjKz2aRLpXtnknmj6lNwxieLZucagD6Ze98apwKkk3TlTN/61oYYU4lLzAjL72IR4+8QOj/D2O3VDvzU9FDVp6lp99i7M2BRkmPct2ec2SyvNLeIUy3jwXJU6lIinRtjcg2a6/KaO+2aXbqdbNKv9iey3j6SdxXUVezDUyYTuBiYQ/w6U1BpBbEl4lZkiBcFQ5ISQJXJqBGW2QIemfPzoYercXloKrWHJqjaP/4ixXT0jZfXgQUBTSGzqOIVIJ4VBVJEMKQZsZrJXHJQWP2RUBVJyN6RkCCxFiEj/TYMF/swB//drLxzs7H/lwqrz3WyOBqok3UHsS218+Ghwm0N2XDJXhw76J9lbn8B", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Certification = _t, #"Issued by" = _t, #"Issued on" = _t, Expires = _t, #"Badge URL" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Issued on", type date}, {"Expires", type date}}),
+				    #"Add duration" = Table.AddColumn(#"Changed Type", "Years Certified", (each if ([Expires] = null) then
+				  Number.Round(Duration.TotalDays((Date.From(DateTime.LocalNow()) - [Issued on])) / 365)
+				else
+				  Number.Round(Duration.TotalDays([Expires] - [Issued on]) / 365)), Int64.Type)
+				in
+				    #"Add duration"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

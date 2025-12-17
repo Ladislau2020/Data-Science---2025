@@ -1,0 +1,100 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "cecf6e52027bf9926b6e",
+  "position": {
+    "x": 15.454545454545453,
+    "y": 140.90909090909091,
+    "z": 1000,
+    "height": 268.18181818181819,
+    "width": 695.45454545454538
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Story:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "14pt",
+                      "color": "#154734"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontSize": "14pt",
+                      "color": "#154734"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "In the magical realm of Fabricland, young wizards and heroes are preparing to choose their future colleges. But the students face a problem: a long, confusing list of colleges with scattered information. The High Council of Education has turned to data wizards (that’s the participants!) to bring order to chaos.",
+                    "textStyle": {
+                      "fontSize": "14pt",
+                      "color": "#154734"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Your mission: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "14pt",
+                      "color": "#154734"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Craft an insightful, visually captivating Power BI report that helps the next generation of Fabricland’s students make wise, data-driven choices about where to study, grow, and launch their magical careers.",
+                    "textStyle": {
+                      "fontSize": "14pt",
+                      "color": "#154734"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

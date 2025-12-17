@@ -1,0 +1,22 @@
+model Model
+	culture: pt-PT
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-PT
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Car Sales"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.124.1805.0 (23.12)
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop"]
+
+ref table 'Car Sales'
+ref table DateTableTemplate_450be342-ce89-4d1e-b670-8bdbebc330dd
+ref table LocalDateTable_ba93f129-a4c6-46b2-85d0-a1f102e2c2c1
+
+ref cultureInfo pt-PT
+

@@ -1,0 +1,36 @@
+table 'Work Skills (do not touch!)'
+	lineageTag: e7ea1b66-069d-48fe-95b6-7b28775cc0ae
+
+	column WorkID
+		dataType: int64
+		formatString: 0
+		lineageTag: f7053711-136e-422e-979a-d8cd63be40ac
+		summarizeBy: none
+		sourceColumn: WorkID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Skill
+		dataType: string
+		lineageTag: f357a898-365b-41af-9049-60f72580dd39
+		summarizeBy: none
+		sourceColumn: Skill
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Work Skills (do not touch!)-13c79ba7-79cd-497d-9c5e-5b28c2e5beb0' = m
+		mode: import
+		source =
+				let
+				    Source = #"Work History",
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"WorkID", "Skill 1", "Skill 2", "Skill 3", "Skill 4", "Skill 5"}),
+				    #"Unpivoted Other Columns" = Table.UnpivotOtherColumns(#"Removed Other Columns", {"WorkID"}, "Attribute", "Skill"),
+				    #"Removed Columns" = Table.RemoveColumns(#"Unpivoted Other Columns",{"Attribute"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Columns", each ([Skill] <> ""))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

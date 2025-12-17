@@ -1,0 +1,13 @@
+expression 'Data Dictionary' =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\Ladislau André\OneDrive - University of the People\Ambiente de Trabalho\Projects\Onyx Healthcare Dataset - April 2025\Healthcare Analysis Dataset.xlsx"), null, true),
+		    #"Data Dictionary_Sheet" = Source{[Item="Data Dictionary",Kind="Sheet"]}[Data],
+		    #"Changed Type" = Table.TransformColumnTypes(#"Data Dictionary_Sheet",{{"Column1", type text}, {"Column2", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 947be030-0579-40e4-a7cd-a8127c0f3b1c
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

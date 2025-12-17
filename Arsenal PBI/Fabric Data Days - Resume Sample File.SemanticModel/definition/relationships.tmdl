@@ -1,0 +1,27 @@
+relationship 525f9a8a-0b7e-4304-907b-6ab73a794a07
+	isActive: false
+	fromColumn: Skills.'Start Date'
+	toColumn: Date.Date
+
+relationship 4c8f78f9-0c50-407c-a809-6c449381618b
+	fromColumn: 'Work History'.'Start Date'
+	toColumn: Date.Date
+
+relationship a54318fb-1cfe-4116-a8ae-4a0df6977f2d
+	fromColumn: Certifications.'Issued on'
+	toColumn: Date.Date
+
+relationship d9593fda-de8c-4300-8a5c-2bc5989d63e7
+	fromColumn: Education.'Start Date'
+	toColumn: Date.Date
+
+relationship 2c6b7616-24fb-4e7c-88de-87b713916a66
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Work Skills (do not touch!)'.WorkID
+	toColumn: 'Work History'.WorkID
+
+relationship 0c56fe65-42cc-44b2-8537-65e7a8b8a518
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Work Skills (do not touch!)'.Skill
+	toColumn: Skills.Skills
+

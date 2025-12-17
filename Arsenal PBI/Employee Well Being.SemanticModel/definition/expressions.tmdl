@@ -1,0 +1,13 @@
+expression post_pandemic_remote_work_health_impact_2025 =
+		let
+		    Source = Csv.Document(File.Contents("C:\Users\Ladislau André\OneDrive - University of the People\Ambiente de Trabalho\Projects\Employee Well Being\post_pandemic_remote_work_health_impact_2025.csv"),[Delimiter=",", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Survey_Date", type date}, {"Age", Int64.Type}, {"Gender", type text}, {"Region", type text}, {"Industry", type text}, {"Job_Role", type text}, {"Work_Arrangement", type text}, {"Hours_Per_Week", Int64.Type}, {"Mental_Health_Status", type text}, {"Burnout_Level", type text}, {"Work_Life_Balance_Score", Int64.Type}, {"Physical_Health_Issues", type text}, {"Social_Isolation_Score", Int64.Type}, {"Salary_Range", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 2049f636-d824-4022-99c8-14b86def4e48
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,4 @@
+relationship AutoDetected_2c14430c-cda5-44d1-9906-30230c548d07
+	fromColumn: Programs_Majors.CollegeID
+	toColumn: College_Profiles.CollegeID
+

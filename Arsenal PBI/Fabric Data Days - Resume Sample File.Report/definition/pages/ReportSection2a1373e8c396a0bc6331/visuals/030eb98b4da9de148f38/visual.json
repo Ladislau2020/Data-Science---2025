@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "030eb98b4da9de148f38",
+  "position": {
+    "x": 730.61755773031871,
+    "y": 310.58823529411762,
+    "z": 4000,
+    "height": 281.80437908181648,
+    "width": 500.74944457890632,
+    "tabOrder": 3000
+  },
+  "visualGroup": {
+    "displayName": "Work Exp, Skills, Certs Buttons",
+    "groupMode": "ScaleMode"
+  }
+}

@@ -1,0 +1,81 @@
+table Profile
+	lineageTag: 7faa70f5-0bdd-422a-8b51-a12231187832
+
+	column 'Image URL'
+		dataType: string
+		lineageTag: 6f5a393a-412c-4658-8d1a-ca20dd1bd82a
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: Image URL
+
+		annotation SummarizationSetBy = Automatic
+
+	column LinkedIn
+		dataType: string
+		lineageTag: add3db3c-55ed-4fda-a517-dc3ef0c3fa47
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: LinkedIn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Twitter
+		dataType: string
+		lineageTag: 0bcc44bf-4a6a-47ee-b91e-732ac2e0fcf2
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Twitter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Blog
+		dataType: string
+		lineageTag: 86b527e3-1884-4bd6-a602-52f5e6c449c9
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Blog
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LinkedIn Icon'
+		dataType: string
+		lineageTag: a5464d96-0637-4fb8-a5e4-ea5d99a61466
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: LinkedIn Icon
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Twitter Icon'
+		dataType: string
+		lineageTag: 952c2d87-e9d4-46b4-b128-1876055f662c
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: Twitter Icon
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Wordpress Icon'
+		dataType: string
+		lineageTag: a75b9e3e-9257-463a-be87-21920ac589b8
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: Wordpress Icon
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Profile-9cb8dea2-cba2-41fa-9603-b000e47501c5 = m
+		mode: import
+		queryGroup: 'Add your data to these queries'
+		source =
+				let
+				    // Click on the gear to enter source data. Do not rename columns or the remaining steps will break.
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("jZBRa8IwEMe/y8C3tbm2adMOZHRzuE3c2MtwOpHYxDYzTUsTLfrpFyMM2ZMPd9xx//tx/1ssbipjWn2HUM2ZoL4UBVN+0dSI1RqJmpYc7UM0wiOI8o/xrJjWD1M8JW89artmIyT3mNCtpIe2akzj6aoTarsKAU5xlQZQQEKS4owAQJzd82FAEpxCggG+dwBhsh+uuaHn2gwLMjumz59s0r7KdpfvVz/wNX+ps3yLj9CVo8nTLK/JfP0+zm9u/+z1fW/Nqa11efYnFJLU3iXpzqOKdYPHaJBnHqOG2p7KgzboYt++xRNFo7TXqtLfSGpOnSPFQWgt4FOkMfHt/GLP9MIY3jmhrqhalZpdj43COHEJgugf2B1q4UXFtdNfT42zJHWJkNhRl8tf", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Image URL" = _t, LinkedIn = _t, #"LinkedIn Icon" = _t, Twitter = _t, #"Twitter Icon" = _t, Blog = _t, #"Wordpress Icon" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Image URL", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,17 @@
+relationship AutoDetected_1618d922-d9d7-458f-9ce8-36ff1f9d3c8e
+	fromColumn: 'Data Sales Adidas'.'Location Key'
+	toColumn: Location.LocationKey
+
+relationship AutoDetected_2443b30e-939f-46a2-bc18-59747844d563
+	fromColumn: 'Data Sales Adidas'.Product
+	toColumn: Product.Product
+
+relationship 1aced189-5992-4754-9439-536fd68771b0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.Date
+	toColumn: LocalDateTable_cff750d6-dd65-44cd-9a51-f7205d323f16.Date
+
+relationship 33b07ca9-16a8-d666-4fd9-51f5f23e104f
+	fromColumn: 'Data Sales Adidas'.'Invoice Date'
+	toColumn: Calendar.Date
+

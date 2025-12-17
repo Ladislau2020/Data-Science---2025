@@ -1,0 +1,300 @@
+table 'Animal Shelter'
+	lineageTag: ae8db875-3e30-4676-beb0-2093e8c07f4c
+
+	measure 'Total registry' = COUNTROWS('Animal Shelter')
+		formatString: 0
+		displayFolder: General Metrics
+		lineageTag: aa64c039-ebe4-41d3-8353-77df57b953eb
+
+	measure Animals = DISTINCTCOUNT('Animal Shelter'[Animal ID])
+		formatString: 0
+		displayFolder: General Metrics
+		lineageTag: f776d2ee-24b2-42b8-9381-05f1d7b85156
+
+	measure Outcome =
+			CALCULATE(
+			    [Total registry],
+			    USERELATIONSHIP('Animal Shelter'[Outcome Date], 'Date'[Date])
+			)
+		formatString: 0
+		displayFolder: General Metrics
+		lineageTag: 5fbb3212-1081-4b3c-9a46-2ee6fd7321fc
+
+	measure 'live-release rate' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        [Total registry],
+			        'Animal Shelter'[outcome_is_alive] == TRUE()
+			    ),
+			    [Total registry]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: General Metrics
+		lineageTag: b753988a-41e4-46cd-8bfb-4a54f7f747e5
+
+	column 'Kennel ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 36fbf523-7856-4f6d-bfe5-4cb05ffff816
+		summarizeBy: count
+		sourceColumn: Kennel ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Animal ID'
+		dataType: string
+		lineageTag: 2638057f-68f5-4cf8-9ba9-dd4c9c638a43
+		summarizeBy: none
+		sourceColumn: Animal ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Animal Name'
+		dataType: string
+		lineageTag: 4ee0cb6c-cc2f-4bcf-9d80-200b5232dd3b
+		summarizeBy: none
+		sourceColumn: Animal Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Animal Type'
+		dataType: string
+		lineageTag: b54e3281-8b62-4903-9e55-00646e8bd370
+		summarizeBy: none
+		sourceColumn: Animal Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Primary Color'
+		dataType: string
+		lineageTag: 46792890-4512-4cbe-8727-ec7c30ee4b7a
+		summarizeBy: none
+		sourceColumn: Primary Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Secondary Color'
+		dataType: string
+		lineageTag: 9c39923f-d768-4f8a-bfe0-9f389a1a1018
+		summarizeBy: none
+		sourceColumn: Secondary Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sex
+		dataType: string
+		lineageTag: 83b07e41-b0f0-4eaf-9bff-9a56c9c2c748
+		summarizeBy: none
+		sourceColumn: Sex
+
+		annotation SummarizationSetBy = Automatic
+
+	column DOB
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7715d303-88cb-42f6-b161-736ef33252bc
+		summarizeBy: none
+		sourceColumn: DOB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Intake Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 10ec1b8a-e19f-4d5b-923c-e3f047d562fd
+		summarizeBy: none
+		sourceColumn: Intake Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Intake Condition'
+		dataType: string
+		lineageTag: 60ec76da-558c-4d0f-97ac-4e63f50bce32
+		summarizeBy: none
+		sourceColumn: Intake Condition
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Intake Type'
+		dataType: string
+		lineageTag: cea70386-7695-4c5b-abab-3632cf4fe0c0
+		summarizeBy: none
+		sourceColumn: Intake Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Intake Subtype'
+		dataType: string
+		lineageTag: 40c4d6ae-ca8a-4d8e-8963-bb5c9c1773bf
+		summarizeBy: none
+		sourceColumn: Intake Subtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reason for Intake'
+		dataType: string
+		lineageTag: b642d929-769c-4545-be4b-b17d2d7f4ad3
+		summarizeBy: none
+		sourceColumn: Reason for Intake
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Outcome Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 45679d99-1568-4104-bc82-3e42b7595be3
+		summarizeBy: none
+		sourceColumn: Outcome Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Crossing
+		dataType: string
+		lineageTag: ec05a082-4aaa-4742-a21d-2bd34c79cb71
+		summarizeBy: none
+		sourceColumn: Crossing
+
+		annotation SummarizationSetBy = Automatic
+
+	column Jurisdiction
+		dataType: string
+		lineageTag: d1c1484a-0fcb-413f-a7c6-8589b69c2c0d
+		summarizeBy: none
+		sourceColumn: Jurisdiction
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Outcome Type'
+		dataType: string
+		lineageTag: 68b728dd-bb87-4c50-98a7-405e15314bb7
+		summarizeBy: none
+		sourceColumn: Outcome Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Outcome Subtype'
+		dataType: string
+		lineageTag: db2c8351-a05e-450c-9397-05fe483a73c7
+		summarizeBy: none
+		sourceColumn: Outcome Subtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: string
+		lineageTag: 72798425-6877-4b1d-a9a5-fd5724a875ef
+		summarizeBy: none
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column longitude
+		dataType: string
+		lineageTag: 8c67ef58-a103-42da-b78b-38599bd1f161
+		summarizeBy: none
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column intake_is_dead
+		dataType: string
+		lineageTag: f21ab6a0-15c2-4cfb-83fb-a563e177006d
+		summarizeBy: none
+		sourceColumn: intake_is_dead
+
+		annotation SummarizationSetBy = Automatic
+
+	column geopoint
+		dataType: string
+		lineageTag: 34026a8c-8c22-43c2-8a66-cc545b7c6329
+		summarizeBy: none
+		sourceColumn: geopoint
+
+		annotation SummarizationSetBy = Automatic
+
+	column intake_duration
+		dataType: int64
+		formatString: 0
+		lineageTag: 19f5996a-8088-4ec5-8ce1-9a7b4d7e0890
+		summarizeBy: sum
+		sourceColumn: intake_duration
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_current_month
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: dd2389e0-d04c-4e52-af08-fd5758c79c34
+		summarizeBy: none
+		sourceColumn: is_current_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_is_dead
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b463c0ca-5797-4fec-8234-1d7a35d20856
+		summarizeBy: none
+		sourceColumn: outcome_is_dead
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_is_current
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 460f0f40-ed93-43b2-b9b7-30c6b4576692
+		summarizeBy: none
+		sourceColumn: outcome_is_current
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_is_other
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7a55408e-4036-4ca5-8534-65dfb74f7a1e
+		summarizeBy: none
+		sourceColumn: outcome_is_other
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome_is_alive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4ef97586-1874-45d4-910c-64672307992a
+		summarizeBy: none
+		sourceColumn: outcome_is_alive
+
+		annotation SummarizationSetBy = Automatic
+
+	column was_outcome_alive
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c5c62ce-8765-4a09-95c7-05bdb11fe683
+		summarizeBy: sum
+		sourceColumn: was_outcome_alive
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Animal Shelter' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Ladislau André\OneDrive - University of the People\Ambiente de Trabalho\Projects\OnyxData\12 - December DataDNA-Dataset-Challenge-Animal-Shelter-Operations-December-2025\DataDNA Dataset Challenge - Animal Shelter Operations - December 2025.csv"),[Delimiter=",", Columns=29, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Kennel ID", Int64.Type}, {"Animal ID", type text}, {"Animal Name", type text}, {"Animal Type", type text}, {"Primary Color", type text}, {"Secondary Color", type text}, {"Sex", type text}, {"DOB", type date}, {"Intake Date", type date}, {"Intake Condition", type text}, {"Intake Type", type text}, {"Intake Subtype", type text}, {"Reason for Intake", type text}, {"Outcome Date", type date}, {"Crossing", type text}, {"Jurisdiction", type text}, {"Outcome Type", type text}, {"Outcome Subtype", type text}, {"latitude", type text}, {"longitude", type text}, {"intake_is_dead", type text}, {"geopoint", type text}, {"intake_duration", Int64.Type}, {"is_current_month", type logical}, {"outcome_is_dead", type logical}, {"outcome_is_current", type logical}, {"outcome_is_other", type logical}, {"outcome_is_alive", type logical}, {"was_outcome_alive", Int64.Type}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type","*","",Replacer.ReplaceText,{"Animal Name"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",#date(1967, 11, 26),#date(1997, 11, 26),Replacer.ReplaceValue,{"DOB"})
+				in
+				    #"Replaced Value1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

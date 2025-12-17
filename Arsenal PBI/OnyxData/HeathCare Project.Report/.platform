@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "HeathCare Project"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5291069a-2c10-9794-46f1-0d2cae9d3b22"
+  }
+}

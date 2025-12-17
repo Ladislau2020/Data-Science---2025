@@ -1,0 +1,69 @@
+table Volunteering
+	lineageTag: 4c0b78af-fd6f-4aac-99a5-bbbd314b8ed9
+
+	column Organization
+		dataType: string
+		lineageTag: bfa8b5ec-8762-4987-a260-6b3c7ec43978
+		summarizeBy: none
+		sourceColumn: Organization
+
+		annotation SummarizationSetBy = Automatic
+
+	column Role
+		dataType: string
+		lineageTag: 095086b0-8c88-4680-94f3-7ed448f488d0
+		summarizeBy: none
+		sourceColumn: Role
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b5f3bb49-c326-448d-ba6a-9b63147e5d33
+		summarizeBy: none
+		sourceColumn: Start Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'End Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e966f3b3-f257-456d-80ec-f6c19efd0718
+		summarizeBy: none
+		sourceColumn: End Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Duration (years)'
+		dataType: double
+		formatString: 0
+		lineageTag: 1f70043c-16b9-4fdc-9e1f-847a9594ff9e
+		summarizeBy: sum
+		sourceColumn: Duration (years)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Volunteering-61541a7d-de49-4bf3-a28c-7210a0a32537 = m
+		mode: import
+		queryGroup: 'Add your data to these queries'
+		source =
+				let
+				    // Click on the gear to enter source data. Do not rename columns or the remaining steps will break.
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("TY6xCoMwEEB/5cgsxMRBHFulrZsg6iAOtrlBLDlJLpT+faNdnO4dvHvcOIqGPujgWkPn47w7ChtUpUjEjYI16CLlUkmdqjyi0jLbF63FlIyiswujgZZnRg8Nzi+Ektzmo/qoe3mpqxZ6egfLeEqle6r4Y3GEBnIrBYYBjUVv5m8USrLslmdg2i/VoWt1fiIT0/QD", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Organization = _t, Role = _t, #"Start Date" = _t, #"End Date" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Organization", type text}, {"Role", type text}, {"Start Date", type date}, {"End Date", type date}}),
+				    Custom1 = Table.AddColumn(#"Changed Type", "Duration (years)", (each if ([End Date] = null) then
+				  "Present"
+				else
+				  Number.Round((Duration.TotalDays([End Date] - [Start Date]) / 365))), type number)
+				in
+				    Custom1
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

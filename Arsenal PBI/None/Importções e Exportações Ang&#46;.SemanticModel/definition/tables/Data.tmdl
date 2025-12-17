@@ -1,0 +1,23 @@
+table Data
+	lineageTag: 2d237017-2ac3-4573-aeff-820d5c1f2eed
+
+	column Date
+		formatString: General Date
+		lineageTag: 90a400ab-20b5-41e3-92c0-7fbed6618099
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: c9abdda7-ebe9-4c73-917b-49791bd9700f
+			defaultHierarchy: LocalDateTable_09968f60-3875-43fe-8382-ef434cb6046a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Data-507aa832-a03b-469b-badc-cee3bb07eb3d = calculated
+		mode: import
+		source = CALENDAR(MIN('Exportações'[Ano]), MAX('Exportações'[Ano]))
+
+	annotation PBI_Id = 669fc58701d94ff7866a0ca899a5aaa8
+

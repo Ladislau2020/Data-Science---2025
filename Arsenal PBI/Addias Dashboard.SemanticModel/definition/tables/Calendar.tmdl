@@ -1,0 +1,103 @@
+table Calendar
+	lineageTag: 5bbfd697-6670-45fb-9247-b3f212f54c95
+
+	column Date
+		formatString: General Date
+		lineageTag: 67ab8c6d-0d19-4d4c-9768-7d75ec31cfc7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 1aced189-5992-4754-9439-536fd68771b0
+			defaultHierarchy: LocalDateTable_cff750d6-dd65-44cd-9a51-f7205d323f16.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateID
+		lineageTag: e571d92f-7897-4feb-b5cf-6645f1d7a3b0
+		summarizeBy: count
+		isNameInferred
+		sourceColumn: [DateID]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: string
+		lineageTag: 26d26619-d825-4f4d-9417-0943209cb584
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNo
+		formatString: 0
+		lineageTag: 8698794e-abc5-4fc3-a9e8-19f044f9ed7f
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [MonthNo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: ed4e03ac-d899-4780-8b69-3dfb70354836
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+		sortByColumn: MonthNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: 9a0b69da-f235-4aa8-9696-56ddeff2447a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: dbaeab87-4b67-4652-9060-fca8ae225bf2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekdayNo
+		formatString: 0
+		lineageTag: d3d22d1c-8377-45c5-a175-d2d241383edc
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [WeekdayNo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weekday
+		lineageTag: c1215334-137e-4c86-81dd-e8015014abc4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekday]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = calculated
+		mode: import
+		source = ```
+				ADDCOLUMNS ( CALENDARAUTO (),
+				    "DateID", VALUE(FORMAT([Date], "YYYYMMDD")),
+					"Year", YEAR([Date]), 
+					"MonthNo", MONTH([Date]), 
+					"Month", FORMAT([Date],"mmm"),
+					"Quarter", FORMAT([Date],"\QQ"),
+				    "YearMonth", FORMAT([Date],"YYYY-MM"), 
+					"WeekdayNo", WEEKDAY([Date],2), //1-Sun..Sat, 2-Mon..Sat
+					"Weekday", FORMAT([Date],"ddd") )
+				```
+
+	annotation PBI_Id = d0df1c8b61a543ec90f0ff9abc17a531
+

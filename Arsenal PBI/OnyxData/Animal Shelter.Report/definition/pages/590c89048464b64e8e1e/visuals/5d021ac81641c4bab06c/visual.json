@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "5d021ac81641c4bab06c",
+  "position": {
+    "x": 0,
+    "y": 7.2214386459802533,
+    "z": 0,
+    "height": 112.83497884344146,
+    "width": 156.16361071932297
+  },
+  "visual": {
+    "visualType": "card",
+    "autoSelectVisualType": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Animal Shelter"
+                    }
+                  },
+                  "Property": "Total registry"
+                }
+              },
+              "queryRef": "Animal Shelter.Total animals",
+              "nativeQueryRef": "Total registry"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "219d6c9b4000d0b267d2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Animal Shelter"
+              }
+            },
+            "Property": "Total registry"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

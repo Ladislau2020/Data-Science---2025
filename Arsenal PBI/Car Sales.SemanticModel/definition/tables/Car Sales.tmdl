@@ -1,0 +1,226 @@
+table 'Car Sales'
+	lineageTag: 7c5b3e9a-9069-4166-b407-8b349fd06d1c
+
+	measure 'Sales Total Count' = COUNT('Car Sales'[Car_id])
+		formatString: 0
+		lineageTag: 95e942dc-9ddd-401d-942d-6c792d2f8423
+
+	measure 'Sales Total Income' = SUM('Car Sales'[Price ($)])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: ec5be906-df36-4dd1-987d-61877144097f
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Highest Employee Income' = MAX('Car Sales'[Annual Income])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: f56c2e30-52a6-4592-bf10-684ea556314a
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'lowest Employee Income' = MIN('Car Sales'[Annual Income])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 5045e759-9484-42dd-9039-5a2e7a376a8f
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Car_id
+		dataType: string
+		lineageTag: bacbe909-8dab-41e1-8795-558fa120da5f
+		summarizeBy: none
+		sourceColumn: Car_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: string
+		lineageTag: 35aa1a5d-03be-47f0-baa8-95b760fce862
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Name'
+		dataType: string
+		lineageTag: c25014c4-7630-4ff2-9b13-fb5ef26b3a39
+		summarizeBy: none
+		sourceColumn: Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 97f8110d-1756-4578-8148-0d6112ea9b0f
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Annual Income'
+		dataType: decimal
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: fa491a87-a77f-4846-9baf-f4b69b4929d9
+		summarizeBy: sum
+		sourceColumn: Annual Income
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Dealer_Name
+		dataType: string
+		lineageTag: bd96a9f1-b1d8-43a6-87d8-4ffdfd170952
+		summarizeBy: none
+		sourceColumn: Dealer_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company
+		dataType: string
+		lineageTag: f2a733c0-bc4f-4632-b8c1-526307e624c3
+		summarizeBy: none
+		sourceColumn: Company
+
+		annotation SummarizationSetBy = Automatic
+
+	column Model
+		dataType: string
+		lineageTag: 4ba45028-fa67-4bd0-a52b-fefffc7ae966
+		summarizeBy: none
+		sourceColumn: Model
+
+		annotation SummarizationSetBy = Automatic
+
+	column Engine
+		dataType: string
+		lineageTag: 6b5300fe-8e7c-4d51-85da-6f7f70f2dfa4
+		summarizeBy: none
+		sourceColumn: Engine
+
+		annotation SummarizationSetBy = Automatic
+
+	column Transmission
+		dataType: string
+		lineageTag: 4369087f-ba3e-467b-bb8d-0323f297c472
+		summarizeBy: none
+		sourceColumn: Transmission
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: a992db4f-f887-4078-b7bb-6ce2f24be2bc
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Price ($)'
+		dataType: decimal
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: e0e78443-7ac4-4782-a2d8-53852c7b52e4
+		summarizeBy: sum
+		sourceColumn: Price ($)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Dealer_No '
+		dataType: string
+		lineageTag: 1204aae3-c192-457c-a3f8-c6a300fe74e3
+		summarizeBy: none
+		sourceColumn: "Dealer_No "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Body Style'
+		dataType: string
+		lineageTag: c5108c25-3bf8-4c8d-8ab0-a4480fbb112f
+		summarizeBy: none
+		sourceColumn: Body Style
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone
+		dataType: int64
+		formatString: 0
+		lineageTag: 15e166db-0ee1-4ca3-a8af-c384f265cb78
+		summarizeBy: sum
+		sourceColumn: Phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dealer_Region
+		dataType: string
+		lineageTag: 1b164084-6452-4805-ab42-c811192554a5
+		summarizeBy: none
+		sourceColumn: Dealer_Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 795ae273-362f-44f8-aba0-9d0392ff231b
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: string
+		lineageTag: 5a5f1064-aea2-47e4-822c-4d823a504b47
+		summarizeBy: none
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: string
+		lineageTag: 6b6b233c-bafe-4233-8230-35f517fd499a
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nova Data' = DATE('Car Sales'[Year], 'Car Sales'[Month], 'Car Sales'[Day])
+		formatString: Short Date
+		lineageTag: d462cde8-3420-4063-a827-8cad0a075668
+		summarizeBy: none
+
+		variation Variação
+			isDefault
+			relationship: 12a6a6e4-a347-4263-934f-962f07eb1675
+			defaultHierarchy: LocalDateTable_ba93f129-a4c6-46b2-85d0-a1f102e2c2c1.'Hierarquia de Datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weekday = FORMAT('Car Sales'[Nova Data], "dddd")
+		lineageTag: 5e444fc5-f296-40ad-8cd0-133e1580c657
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Car Sales' = m
+		mode: import
+		source =
+				let
+				    Origem = Csv.Document(File.Contents("C:\Users\Ladislau André\Documents\Data analysis Projects\Car Sales\Car Sales.xlsx - car_data.csv"),[Delimiter=",", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Car_id", type text}, {"Date", type text}, {"Customer Name", type text}, {"Gender", type text}, {"Annual Income", Int64.Type}, {"Dealer_Name", type text}, {"Company", type text}, {"Model", type text}, {"Engine", type text}, {"Transmission", type text}, {"Color", type text}, {"Price ($)", Int64.Type}, {"Dealer_No ", type text}, {"Body Style", type text}, {"Phone", Int64.Type}, {"Dealer_Region", type text}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Tipo Alterado",{{"Annual Income", Currency.Type}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Tipo Alterado1","DoubleÂ","Doublea",Replacer.ReplaceText,{"Engine"}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Valor Substituído",{{"Price ($)", Currency.Type}}),
+				    #"Texto Antes do Delimitador Inserido" = Table.AddColumn(#"Tipo Alterado2", "Texto Antes do Delimitador", each Text.BeforeDelimiter([Date], "/"), type text),
+				    #"Colunas com Nome Mudado" = Table.RenameColumns(#"Texto Antes do Delimitador Inserido",{{"Texto Antes do Delimitador", "Month"}}),
+				    #"Texto Antes do Delimitador Inserido1" = Table.AddColumn(#"Colunas com Nome Mudado", "Texto Antes do Delimitador", each Text.BeforeDelimiter([Date], "/", {0, RelativePosition.FromEnd}), type text),
+				    #"Texto Depois do Delimitador Extraído" = Table.TransformColumns(#"Texto Antes do Delimitador Inserido1", {{"Texto Antes do Delimitador", each Text.AfterDelimiter(_, "/"), type text}}),
+				    #"Colunas com Nome Mudado1" = Table.RenameColumns(#"Texto Depois do Delimitador Extraído",{{"Texto Antes do Delimitador", "Day"}}),
+				    #"Texto Depois do Delimitador Inserido" = Table.AddColumn(#"Colunas com Nome Mudado1", "Texto Depois do Delimitador", each Text.AfterDelimiter([Date], "/", 1), type text),
+				    #"Colunas com Nome Mudado2" = Table.RenameColumns(#"Texto Depois do Delimitador Inserido",{{"Texto Depois do Delimitador", "Year"}})
+				in
+				    #"Colunas com Nome Mudado2"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

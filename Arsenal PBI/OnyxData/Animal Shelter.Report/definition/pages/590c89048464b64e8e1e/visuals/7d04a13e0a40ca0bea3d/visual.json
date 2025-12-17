@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "7d04a13e0a40ca0bea3d",
+  "position": {
+    "x": 155.82089552238804,
+    "y": 0,
+    "z": 1,
+    "height": 127.16417910447761,
+    "width": 164.77611940298507
+  },
+  "visual": {
+    "visualType": "card",
+    "autoSelectVisualType": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Animal Shelter"
+                    }
+                  },
+                  "Property": "Animals"
+                }
+              },
+              "queryRef": "Animal Shelter.Animals",
+              "nativeQueryRef": "Animals"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

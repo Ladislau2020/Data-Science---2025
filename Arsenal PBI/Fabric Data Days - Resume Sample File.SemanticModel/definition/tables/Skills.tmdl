@@ -1,0 +1,108 @@
+table Skills
+	lineageTag: deb348c4-3294-44d3-9542-494aa663be6d
+
+	measure 'Max Proficiency Score' = MAX(Skills[Proficiency Score])
+		formatString: 0
+		lineageTag: a47111e0-87df-480b-8119-3374292c21f7
+
+	column Skills
+		dataType: string
+		lineageTag: 03d3735d-b7ba-4430-a97e-6c990376f775
+		summarizeBy: none
+		sourceColumn: Skills
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Date'
+		dataType: dateTime
+		formatString: dd-mmm-yy
+		lineageTag: 6c40f0d6-56fd-40ab-b72b-8c2f40dc66b9
+		summarizeBy: none
+		sourceColumn: Start Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'End Date'
+		dataType: dateTime
+		formatString: dd-mmm-yy
+		lineageTag: 0d5b989a-f8bc-4d65-8acb-58d56193ab4f
+		summarizeBy: none
+		sourceColumn: End Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Category
+		dataType: string
+		lineageTag: e6d92fac-e0c4-458b-8155-f587b91d96f6
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Proficiency
+		dataType: string
+		lineageTag: 05c27114-c791-4ab9-a467-3c119e755ece
+		summarizeBy: none
+		sourceColumn: Proficiency
+		sortByColumn: 'Proficiency Sort'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Duration (years)'
+		dataType: int64
+		formatString: 0
+		lineageTag: f580e255-4545-49c5-9341-650fe3f234cb
+		summarizeBy: none
+		sourceColumn: Duration (years)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Proficiency Score'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9db02c1d-de93-476a-b4eb-ca0bc187ac96
+		summarizeBy: none
+		sourceColumn: Proficiency Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Proficiency Sort'
+		dataType: int64
+		formatString: 0
+		lineageTag: ec885a26-0d64-4cc2-b307-c853aad4c28e
+		summarizeBy: none
+		sourceColumn: Proficiency Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Skills-d1dcc841-88b2-470f-b19d-aae7fd834e01 = m
+		mode: import
+		queryGroup: 'Add your data to these queries'
+		source =
+				let
+				    // Click on the gear to enter source data. Do not rename columns or the remaining steps will break.
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("fZFfS8MwFMW/SujzZGtmHT5q54OgMMS3sYfb9q4G09yQPx366U1NpRt2gUAS7i/nnHuz32dbcFCBRdZgj5J0h8pliyxf5ku+ytfhGNYAhW2dHRbxBeuF9SDFNzhBKpQ2kS+u8R0oaDElfjvBLfVoFKga0/CrqA1ZOjq2oxMa9vh8Lck8/6C1HRxGi7v45IVONyU1yLYXE+HzEt5RB24IyqPKJqmS/6q8oSbjhGrTk975SoqaWY3wOcL8oruSus4r4b6mFoMNGfsh9CR9/x8uIkzhSiZIM1ANe+pB+r8PPYs1mvLVlK84+9nQpIzpEqMvQUMdvFnlhWzmOn83IFQsBPXDDw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Skills = _t, #"Start Date" = _t, #"End Date" = _t, Category = _t, #"Proficiency Score" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Skills", type text}, {"Start Date", type date}, {"End Date", type date}, {"Proficiency Score", Int64.Type}}),
+				    #"Add duration" = Table.AddColumn(#"Changed Type", "Duration (years)", (each if ([End Date] = null) then
+				  Number.Round(Duration.TotalDays((Date.From(DateTime.LocalNow()) - [Start Date])) / 365)
+				else
+				  Number.Round(Duration.TotalDays([End Date] - [Start Date]) / 365)), Int64.Type),
+				    #"Add Proficiency Text" = Table.AddColumn(#"Add duration", "Proficiency", each if [Proficiency Score] <= 2 then "Beginner" else if [Proficiency Score] = 3 then "Intermediate" else if [Proficiency Score] > 3 then "Expert" else null, type text),
+				    #"Add Proficiency Sort" = Table.AddColumn(#"Add Proficiency Text", "Proficiency Sort", each if [Proficiency Score] <= 2 then 3 else if [Proficiency Score] = 3 then 2 else if [Proficiency Score] > 3 then 1 else null, Int64.Type)
+				in
+				    #"Add Proficiency Sort"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

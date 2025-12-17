@@ -1,0 +1,23 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-PT
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Data","Data Dictionary","Photo Links"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.141.1451.0 (25.03)+5007b75f0f7edbed506e31fcb76584cd6d711788
+
+ref table Data
+ref table 'Photo Links'
+ref table DateT
+ref table DateTableTemplate_8a05c9f8-0af7-45b6-aba3-f718eebdd881
+ref table LocalDateTable_d32b2bdd-bac1-4150-b8dc-09770995d531
+ref table LocalDateTable_50c58b3f-5d7b-434f-92cf-81ea917b1496
+
+ref cultureInfo en-US
+

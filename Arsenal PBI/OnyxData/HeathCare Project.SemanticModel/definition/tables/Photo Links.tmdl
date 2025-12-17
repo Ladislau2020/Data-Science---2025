@@ -1,0 +1,36 @@
+table 'Photo Links'
+	lineageTag: f4dcd4ce-9e06-4bc7-bff1-53d3e7f0b13a
+
+	column Hospital
+		dataType: string
+		lineageTag: 22fcd245-36d0-41fc-af53-c4f3a09f33b9
+		summarizeBy: none
+		sourceColumn: Hospital
+
+		annotation SummarizationSetBy = Automatic
+
+	column Link
+		dataType: string
+		lineageTag: 0e16acc1-765d-4b69-ab46-5986d22206d8
+		summarizeBy: none
+		sourceColumn: Link
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Photo Links' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Ladislau André\OneDrive - University of the People\Ambiente de Trabalho\Projects\Onyx Healthcare Dataset - April 2025\Healthcare Analysis Dataset.xlsx"), null, true),
+				    #"Photo Links_Sheet" = Source{[Item="Photo Links",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"Photo Links_Sheet",{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Hospital", type text}, {"Link", type text}}),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Changed Type1", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+				in
+				    #"Removed Blank Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

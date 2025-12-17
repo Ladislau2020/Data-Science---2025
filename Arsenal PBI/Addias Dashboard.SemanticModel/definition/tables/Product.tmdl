@@ -1,0 +1,35 @@
+table Product
+	lineageTag: 80e646b9-e7cc-4e1e-9396-ad55c01a72b6
+
+	column Product
+		dataType: string
+		lineageTag: 17bbf66e-04df-4316-ad4a-8cca045f9449
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Image Url'
+		dataType: string
+		lineageTag: bc668cf5-cc0b-4fb8-a067-7b3d5396a855
+		summarizeBy: none
+		sourceColumn: Image Url
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Ladislau André\OneDrive - University of the People\Documentos\Power BI Course Resources-20241028T211906Z-001\Power BI Course Resources\Adidas US Datasets.xlsx"), null, true),
+				    Product_Sheet = Source{[Item="Product",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Product_Sheet,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Product", type text}, {"Image Url", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

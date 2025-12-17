@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Fabric Data Days - Resume Sample File"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ea841c15-ac84-8605-4daf-1bf96fcf902c"
+  }
+}

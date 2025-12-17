@@ -1,0 +1,15 @@
+relationship c9abdda7-ebe9-4c73-917b-49791bd9700f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Data.Date
+	toColumn: LocalDateTable_09968f60-3875-43fe-8382-ef434cb6046a.Date
+
+relationship a9eed5ea-8ade-4d36-a862-1a4ab4d54cee
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Importações.Ano
+	toColumn: LocalDateTable_d91a1465-d419-404d-852c-c8e8258c1b22.Date
+
+relationship be7694fa-52f7-4b26-a403-d98a67279d96
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Exportações.Ano
+	toColumn: LocalDateTable_2d8c0525-4ee3-41de-b945-fab9b0795f7a.Date
+

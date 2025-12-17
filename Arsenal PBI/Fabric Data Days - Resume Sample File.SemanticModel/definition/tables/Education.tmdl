@@ -1,0 +1,72 @@
+table Education
+	lineageTag: a43dcc43-3e13-443b-a315-43fdfd7ca008
+
+	column School
+		dataType: string
+		lineageTag: f0530d24-91a3-47d6-a875-882873d2fc47
+		summarizeBy: none
+		sourceColumn: School
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0a11f505-1eaa-4a90-90fe-b9ff14e50df8
+		summarizeBy: none
+		sourceColumn: Start Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'End Date'
+		dataType: dateTime
+		formatString: yyyy
+		lineageTag: d1328f2f-8e9d-4464-b482-40c3ec7a92a4
+		summarizeBy: none
+		sourceColumn: End Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Degree
+		dataType: string
+		lineageTag: 76247cd4-b03d-45ec-987d-2374e82b0e63
+		summarizeBy: none
+		sourceColumn: Degree
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Duration (years)'
+		dataType: double
+		lineageTag: 2595f365-c5c9-4715-91ca-330619ac967f
+		summarizeBy: sum
+		sourceColumn: Duration (years)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Education-3842f772-39bb-41ee-a940-43f03e289cc2 = m
+		mode: import
+		queryGroup: 'Add your data to these queries'
+		source =
+				let
+				    // Click on the gear to enter source data. Do not rename columns or the remaining steps will break.
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WckzPLy7JzMvIV/BLLclXCM3LLEstKs4sqVTQVXDMS8/PSVTSUTLRN9Q3MjC0ADJNwUwjIyDTKTE5IzUnv0gpVidaCUljfppCSUaqQkBqfkFOKtCY0GBHoGpDQ4hOYyS2GYopsQA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [School = _t, #"Start Date" = _t, #"End Date" = _t, Degree = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"School", type text}, {"Start Date", type date}, {"End Date", type date}, {"Degree", type text}}),
+				    Custom1 = Table.AddColumn(#"Changed Type", "Duration (years)", (each if ([End Date] = null) then
+				  "Present"
+				else
+				  Number.Round((Duration.TotalDays([End Date] - [Start Date]) / 365))), type number)
+				in
+				    Custom1
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

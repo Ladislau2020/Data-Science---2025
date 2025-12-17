@@ -1,0 +1,384 @@
+table Data
+	lineageTag: 11d99950-2065-4fcc-b68f-e53894b865af
+
+	measure 'Total Patients' = COUNTROWS(Data)
+		formatString: 0
+		displayFolder: Geral
+		lineageTag: dcfcc945-e135-471a-a916-0cd755e028c4
+
+	measure Billing = SUM(Data[Billing Amount])
+		displayFolder: Geral
+		lineageTag: e1e9b539-ee73-4f27-a11f-e464d7831551
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AVG Age' = AVERAGE(Data[Age])
+		displayFolder: Geral
+		lineageTag: cd07c027-9078-4fb1-92a8-9fea6a9c3172
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Billing AVG' = AVERAGE(Data[Billing Amount])
+		displayFolder: Geral
+		lineageTag: 266a89fb-851e-4f8d-9fe4-59244965187d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AVG Days in' = AVERAGEX(Data, DATEDIFF(Data[Date of Admission], Data[Discharge Date], DAY))
+		formatString: 0.00
+		displayFolder: Geral
+		lineageTag: c943032d-d3a5-46af-b451-46449d8498bb
+
+	measure BillingMOM =
+			
+			VAR Previous_Month = CALCULATE([Billing], DATEADD('DateT'[Date],-1, MONTH))
+			VAR Current_Month = [Billing]
+			RETURN
+			IF(AND(Current_Month, Previous_Month), Current_Month / Previous_Month - 1)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
+		lineageTag: 80a4d49e-6040-491d-9623-1a2863818589
+
+	measure BillingYOY =
+			
+			VAR Previous_Year = CALCULATE([Billing], DATEADD('DateT'[Date],-1, YEAR))
+			VAR Current_Year = [Billing]
+			RETURN
+			IF(AND(Current_Year, Previous_Year), Current_Year / Previous_Year - 1)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
+		lineageTag: e86d32ee-1a49-4076-8ec6-153528fae4fd
+
+	measure PatientsYOY =
+			
+			VAR Previous_Year = CALCULATE([Total Patients], DATEADD('DateT'[Date],-1, YEAR))
+			VAR Current_Year = [Total Patients]
+			RETURN
+			IF(AND(Current_Year, Previous_Year), Current_Year / Previous_Year - 1)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
+		lineageTag: ac39f6a4-c264-4356-9937-0a76048b6793
+
+	measure PatientsMoM =
+			
+			VAR Previous_Month = CALCULATE([Total Patients], DATEADD('DateT'[Date],-1, Month))
+			VAR Current_Month = [Total Patients]
+			RETURN
+			IF(AND(Current_Month, Previous_Month), Current_Month / Previous_Month - 1)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
+		lineageTag: f6f47aab-efb3-40b4-88e3-6e5ad6ab03d8
+
+	column 'Patient ID'
+		dataType: string
+		displayFolder: Columns
+		lineageTag: e57314ee-e634-44f2-a71b-152585e8c5c5
+		summarizeBy: none
+		sourceColumn: Patient ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		displayFolder: Columns
+		lineageTag: 4820374c-a42a-4c54-a1ac-92012e116fa8
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Data","TableItemName":"Age (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column Gender
+		dataType: string
+		displayFolder: Columns
+		lineageTag: a004a128-f5e7-4e8f-bac6-82903aee1508
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Blood Type'
+		dataType: string
+		displayFolder: Columns
+		lineageTag: f9d48d48-48fb-4904-b198-46f9856ae12e
+		summarizeBy: none
+		sourceColumn: Blood Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Medical Condition'
+		dataType: string
+		displayFolder: Columns
+		lineageTag: 7b7a2e26-fdfb-4ccb-8e54-a9a73d2b84dc
+		summarizeBy: none
+		sourceColumn: Medical Condition
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date of Admission'
+		dataType: dateTime
+		formatString: Long Date
+		displayFolder: Columns
+		lineageTag: 2e6332ba-1f29-4e2e-8e41-13c7068287e9
+		summarizeBy: none
+		sourceColumn: Date of Admission
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Doctor
+		dataType: string
+		displayFolder: Columns
+		lineageTag: 5d130623-382d-4da8-818d-602e5e66f6d8
+		summarizeBy: none
+		sourceColumn: Doctor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hospital
+		dataType: string
+		displayFolder: Columns
+		lineageTag: 26f46307-9053-4624-9837-e3dd9efaaf7e
+		summarizeBy: none
+		sourceColumn: Hospital
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Insurance Provider'
+		dataType: string
+		displayFolder: Columns
+		lineageTag: de506a53-cc90-4b71-b8bd-6e79dce384b1
+		summarizeBy: none
+		sourceColumn: Insurance Provider
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Billing Amount'
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Columns
+		lineageTag: edf58e37-962b-41e7-9b95-d0aab1a8f80c
+		summarizeBy: sum
+		sourceColumn: Billing Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Room Number'
+		dataType: int64
+		formatString: 0
+		displayFolder: Columns
+		lineageTag: f599f3dc-80a1-4b46-b1ef-a89dacac8ba6
+		summarizeBy: sum
+		sourceColumn: Room Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Admission Type'
+		dataType: string
+		displayFolder: Columns
+		lineageTag: 82bcada0-1d0c-48c5-8497-65565de458e1
+		summarizeBy: none
+		sourceColumn: Admission Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Discharge Date'
+		dataType: dateTime
+		formatString: Long Date
+		displayFolder: Columns
+		lineageTag: ef4e4e02-9b1e-4f0a-9679-5f7266303ed8
+		summarizeBy: none
+		sourceColumn: Discharge Date
+
+		variation Variation
+			isDefault
+			relationship: 8617cc0f-9146-495f-81c8-c0b0e860077e
+			defaultHierarchy: LocalDateTable_50c58b3f-5d7b-434f-92cf-81ea917b1496.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Medication
+		dataType: string
+		displayFolder: Columns
+		lineageTag: 7b7e3f9c-b61d-4c65-a17b-b85bcb507393
+		summarizeBy: none
+		sourceColumn: Medication
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Test Results'
+		dataType: string
+		displayFolder: Columns
+		lineageTag: 65d022b4-f383-4d74-9e0a-06fdb263adc4
+		summarizeBy: none
+		sourceColumn: Test Results
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hospital Latitude'
+		dataType: double
+		displayFolder: Columns
+		lineageTag: 3af93a14-3cce-4e93-a92d-281f32306568
+		summarizeBy: sum
+		sourceColumn: Hospital Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Hospital Longitude'
+		dataType: double
+		displayFolder: Columns
+		lineageTag: fca895c6-07eb-42af-99cc-fa15429ef3aa
+		summarizeBy: sum
+		sourceColumn: Hospital Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Age (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Data'[Age]),
+				"(Blank)",
+				'Data'[Age] IN {13,
+					14,
+					15,
+					16,
+					17},
+				"13 - 17",
+				'Data'[Age] IN {18,
+					19,
+					20,
+					21,
+					22,
+					23,
+					24,
+					25,
+					26,
+					27,
+					28,
+					29},
+				"18 - 29",
+				'Data'[Age] IN {30,
+					31,
+					32,
+					33,
+					34,
+					35,
+					36,
+					37,
+					38,
+					39,
+					40,
+					41,
+					42,
+					43,
+					44,
+					45},
+				"30 - 45",
+				'Data'[Age] IN {46,
+					47,
+					48,
+					49,
+					50,
+					51,
+					52,
+					53,
+					54,
+					55,
+					56,
+					57,
+					58,
+					59},
+				"46 - 59",
+				'Data'[Age] IN {60,
+					61,
+					62,
+					63,
+					64,
+					65,
+					66,
+					67,
+					68,
+					69,
+					70,
+					71,
+					72,
+					73,
+					74,
+					75,
+					76,
+					77,
+					78,
+					79,
+					80,
+					81,
+					82,
+					83,
+					84,
+					85,
+					86,
+					87,
+					88,
+					89},
+				"60 <",
+				"Other"
+			)
+		formatString: 0
+		displayFolder: Columns
+		lineageTag: b15205b6-479e-4944-a7bc-b8986a9c25ad
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Data"
+				          }
+				        },
+				        "Property": "Age"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"d","Entity":"Data"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Age"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"13 - 17","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Age"}}],"Values":[[{"Literal":{"Value":"13L"}}],[{"Literal":{"Value":"14L"}}],[{"Literal":{"Value":"15L"}}],[{"Literal":{"Value":"16L"}}],[{"Literal":{"Value":"17L"}}]]}}},{"DisplayName":"18 - 29","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Age"}}],"Values":[[{"Literal":{"Value":"18L"}}],[{"Literal":{"Value":"19L"}}],[{"Literal":{"Value":"20L"}}],[{"Literal":{"Value":"21L"}}],[{"Literal":{"Value":"22L"}}],[{"Literal":{"Value":"23L"}}],[{"Literal":{"Value":"24L"}}],[{"Literal":{"Value":"25L"}}],[{"Literal":{"Value":"26L"}}],[{"Literal":{"Value":"27L"}}],[{"Literal":{"Value":"28L"}}],[{"Literal":{"Value":"29L"}}]]}}},{"DisplayName":"30 - 45","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Age"}}],"Values":[[{"Literal":{"Value":"30L"}}],[{"Literal":{"Value":"31L"}}],[{"Literal":{"Value":"32L"}}],[{"Literal":{"Value":"33L"}}],[{"Literal":{"Value":"34L"}}],[{"Literal":{"Value":"35L"}}],[{"Literal":{"Value":"36L"}}],[{"Literal":{"Value":"37L"}}],[{"Literal":{"Value":"38L"}}],[{"Literal":{"Value":"39L"}}],[{"Literal":{"Value":"40L"}}],[{"Literal":{"Value":"41L"}}],[{"Literal":{"Value":"42L"}}],[{"Literal":{"Value":"43L"}}],[{"Literal":{"Value":"44L"}}],[{"Literal":{"Value":"45L"}}]]}}},{"DisplayName":"46 - 59","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Age"}}],"Values":[[{"Literal":{"Value":"46L"}}],[{"Literal":{"Value":"47L"}}],[{"Literal":{"Value":"48L"}}],[{"Literal":{"Value":"49L"}}],[{"Literal":{"Value":"50L"}}],[{"Literal":{"Value":"51L"}}],[{"Literal":{"Value":"52L"}}],[{"Literal":{"Value":"53L"}}],[{"Literal":{"Value":"54L"}}],[{"Literal":{"Value":"55L"}}],[{"Literal":{"Value":"56L"}}],[{"Literal":{"Value":"57L"}}],[{"Literal":{"Value":"58L"}}],[{"Literal":{"Value":"59L"}}]]}}},{"DisplayName":"60 <","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Age"}}],"Values":[[{"Literal":{"Value":"60L"}}],[{"Literal":{"Value":"61L"}}],[{"Literal":{"Value":"62L"}}],[{"Literal":{"Value":"63L"}}],[{"Literal":{"Value":"64L"}}],[{"Literal":{"Value":"65L"}}],[{"Literal":{"Value":"66L"}}],[{"Literal":{"Value":"67L"}}],[{"Literal":{"Value":"68L"}}],[{"Literal":{"Value":"69L"}}],[{"Literal":{"Value":"70L"}}],[{"Literal":{"Value":"71L"}}],[{"Literal":{"Value":"72L"}}],[{"Literal":{"Value":"73L"}}],[{"Literal":{"Value":"74L"}}],[{"Literal":{"Value":"75L"}}],[{"Literal":{"Value":"76L"}}],[{"Literal":{"Value":"77L"}}],[{"Literal":{"Value":"78L"}}],[{"Literal":{"Value":"79L"}}],[{"Literal":{"Value":"80L"}}],[{"Literal":{"Value":"81L"}}],[{"Literal":{"Value":"82L"}}],[{"Literal":{"Value":"83L"}}],[{"Literal":{"Value":"84L"}}],[{"Literal":{"Value":"85L"}}],[{"Literal":{"Value":"86L"}}],[{"Literal":{"Value":"87L"}}],[{"Literal":{"Value":"88L"}}],[{"Literal":{"Value":"89L"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Duration IN' = DATEDIFF(Data[Date of Admission], Data[Discharge Date], DAY)
+		formatString: 0
+		displayFolder: Columns
+		lineageTag: ecd42849-5cb6-4a97-b461-e9f859c00ad3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Data = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Ladislau André\OneDrive - University of the People\Ambiente de Trabalho\Projects\Onyx Healthcare Dataset - April 2025\Healthcare Analysis Dataset.xlsx"), null, true),
+				    Data_Sheet = Source{[Item="Data",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Data_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Patient ID", type text}, {"Age", Int64.Type}, {"Gender", type text}, {"Blood Type", type text}, {"Medical Condition", type text}, {"Date of Admission", type date}, {"Doctor", type text}, {"Hospital", type text}, {"Insurance Provider", type text}, {"Billing Amount", type number}, {"Room Number", Int64.Type}, {"Admission Type", type text}, {"Discharge Date", type date}, {"Medication", type text}, {"Test Results", type text}, {"Hospital Latitude", type number}, {"Hospital Longitude", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

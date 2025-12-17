@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Employee Well Being V2"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "50f4aafd-ff44-9570-4fde-84f3898d0d20"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "39aa0c855dc752b579c0",
+  "position": {
+    "x": 0,
+    "y": 167.2751403024692,
+    "z": 3000,
+    "height": 114.52923877934728,
+    "width": 478.52158961256009,
+    "tabOrder": 2000
+  },
+  "visualGroup": {
+    "displayName": "Certs, Education, Volunteering",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "030eb98b4da9de148f38"
+}

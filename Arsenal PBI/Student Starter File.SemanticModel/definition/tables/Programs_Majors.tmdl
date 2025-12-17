@@ -1,0 +1,202 @@
+/// The Programs_Majors table provides detailed information about academic programs offered at each college in Fabricland
+table Programs_Majors
+	lineageTag: 3b1cab3f-f22e-4ac6-9c59-082070859e65
+
+	measure 'Faculty Rating star rating' =
+			
+			VAR __MAX_NUMBER_OF_STARS = 5
+			VAR __MIN_RATED_VALUE = 0
+			VAR __MAX_RATED_VALUE = 5
+			VAR __BASE_VALUE = AVERAGE('Programs_Majors'[FacultyRating])
+			VAR __NORMALIZED_BASE_VALUE =
+				MIN(
+					MAX(
+						DIVIDE(
+							__BASE_VALUE - __MIN_RATED_VALUE,
+							__MAX_RATED_VALUE - __MIN_RATED_VALUE
+						),
+						0
+					),
+					1
+				)
+			VAR __STAR_RATING = ROUND(__NORMALIZED_BASE_VALUE * __MAX_NUMBER_OF_STARS, 0)
+			RETURN
+				IF(
+					NOT ISBLANK(__BASE_VALUE),
+					REPT(UNICHAR(9733), __STAR_RATING)
+						& REPT(UNICHAR(9734), __MAX_NUMBER_OF_STARS - __STAR_RATING)
+				)
+		displayFolder: _Formatting
+		lineageTag: 8437fc74-e708-47fb-8c86-9abe5f1969b7
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "StarRating"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column ProgramID
+		dataType: string
+		lineageTag: 327c0a76-ec46-4571-8836-8ca875e3e6e3
+		summarizeBy: none
+		sourceColumn: ProgramID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CollegeID
+		dataType: string
+		lineageTag: 3b1c1fba-7e09-4169-9bd8-52f49a866206
+		summarizeBy: none
+		sourceColumn: CollegeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: dateTime
+		formatString: yyyy
+		lineageTag: a3f6c6ba-709a-430c-9bd3-11a512898e12
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column ProgramName
+		dataType: string
+		lineageTag: 45970aef-68b1-4215-8770-aaf0d91a7582
+		summarizeBy: none
+		sourceColumn: ProgramName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MajorCategory
+		dataType: string
+		lineageTag: 0d0cb23e-be9f-4fcd-9f0e-f9718defa8b5
+		summarizeBy: none
+		sourceColumn: MajorCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level
+		dataType: string
+		lineageTag: ebcd7219-4b6a-476a-b451-2b7ea53e569d
+		summarizeBy: none
+		sourceColumn: Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column DurationYears
+		dataType: int64
+		formatString: 0
+		lineageTag: 101a72f2-1e1d-4e22-9076-9766cd8056f2
+		summarizeBy: sum
+		sourceColumn: DurationYears
+
+		annotation SummarizationSetBy = Automatic
+
+	column Enrollment
+		dataType: int64
+		formatString: 0
+		lineageTag: a67e408c-1579-4e21-80c4-47f030dc985f
+		summarizeBy: sum
+		sourceColumn: Enrollment
+
+		annotation SummarizationSetBy = Automatic
+
+	column InternshipAvailable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9a63a1a6-9dd6-46f5-89de-a106f5173780
+		summarizeBy: none
+		sourceColumn: InternshipAvailable
+
+		annotation SummarizationSetBy = Automatic
+
+	column AvgGraduationRate
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c475cf5-82cf-4501-be2a-0daf2e75cdc6
+		summarizeBy: sum
+		sourceColumn: AvgGraduationRate
+
+		annotation SummarizationSetBy = Automatic
+
+	column AvgStartingSalary
+		dataType: int64
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 7b64108f-7cdf-441b-848b-2ebfe068c021
+		summarizeBy: sum
+		sourceColumn: AvgStartingSalary
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProgramPopularityScore
+		dataType: int64
+		formatString: 0
+		lineageTag: b2500453-12c6-4d3d-b7df-8804cf83b2bb
+		summarizeBy: sum
+		sourceColumn: ProgramPopularityScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProgramDifficulty
+		dataType: string
+		lineageTag: 1e52eb5f-edd4-4d75-a4ae-4823a53eb884
+		summarizeBy: none
+		sourceColumn: ProgramDifficulty
+
+		annotation SummarizationSetBy = Automatic
+
+	column FacultyRating
+		dataType: int64
+		formatString: 0
+		lineageTag: a28c51af-8da0-4087-9fee-4237e0294994
+		summarizeBy: sum
+		sourceColumn: FacultyRating
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProgramDescription
+		dataType: string
+		lineageTag: 19a0b982-5d38-4363-a890-7d5ba74b765f
+		summarizeBy: none
+		sourceColumn: ProgramDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProgramAwards
+		dataType: string
+		lineageTag: 37a02222-ef20-499f-b351-a95bfdf25c95
+		summarizeBy: none
+		sourceColumn: ProgramAwards
+
+		annotation SummarizationSetBy = Automatic
+
+	column CareerPaths
+		dataType: string
+		lineageTag: 461eea5f-3b57-4871-bd9d-e7ca7a0950b3
+		summarizeBy: none
+		sourceColumn: CareerPaths
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Programs_Majors = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\laksh\OneDrive\Desktop\Fabric Days 2025\The College Quest in Fabricland Dataset.xlsx"), null, true),
+				    Programs_Majors_Sheet = Source{[Item="Programs_Majors",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Programs_Majors_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProgramID", type text}, {"CollegeID", type text}, {"Year", type date}, {"ProgramName", type text}, {"MajorCategory", type text}, {"Level", type text}, {"DurationYears", Int64.Type}, {"Enrollment", Int64.Type}, {"InternshipAvailable", type logical}, {"AvgGraduationRate", Int64.Type}, {"AvgStartingSalary", Int64.Type}, {"ProgramPopularityScore", Int64.Type}, {"ProgramDifficulty", type text}, {"FacultyRating", Int64.Type}, {"ProgramDescription", type text}, {"ProgramAwards", type text}, {"CareerPaths", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

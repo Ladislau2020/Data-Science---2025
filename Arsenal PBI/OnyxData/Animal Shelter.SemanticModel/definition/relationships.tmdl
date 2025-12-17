@@ -1,0 +1,19 @@
+relationship 6e5d8e88-272a-4a48-a844-fa3aa5aff885
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date.Date
+	toColumn: LocalDateTable_c38b5ed9-6c05-4f9b-9d3f-6a8f8fdab34a.Date
+
+relationship f8f6c568-2d9e-f1ed-2041-a7ef5abfa3ac
+	fromColumn: 'Animal Shelter'.'Intake Date'
+	toColumn: Date.Date
+
+relationship dcd57c40-f6da-57cb-af9a-39103b5fcdc3
+	isActive: false
+	fromColumn: 'Animal Shelter'.DOB
+	toColumn: Date.Date
+
+relationship afc3400d-05d6-06f6-acd9-c8898742e164
+	isActive: false
+	fromColumn: 'Animal Shelter'.'Outcome Date'
+	toColumn: Date.Date
+

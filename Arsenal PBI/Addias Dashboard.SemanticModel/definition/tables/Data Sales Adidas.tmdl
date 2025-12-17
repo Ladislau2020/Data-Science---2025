@@ -1,0 +1,254 @@
+table 'Data Sales Adidas'
+	lineageTag: a6a4da32-68e4-43f2-9fb3-3c8956bb0eec
+
+	measure 'Total Units sold' = SUM('Data Sales Adidas'[Units Sold])
+		formatString: 0
+		displayFolder: Anchor
+		lineageTag: c0d54667-cd46-42b4-b0b5-949ef8935f60
+
+	measure Total_Sales = SUM('Data Sales Adidas'[Total Sales])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Anchor
+		lineageTag: 45c1a728-cb8d-4256-b27c-bf7ad7f70659
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Avg Price' = AVERAGE('Data Sales Adidas'[Price per Unit])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Anchor
+		lineageTag: 67b77994-98bc-45e4-afdb-01c9dfb6d4ce
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure Profit = SUM('Data Sales Adidas'[Operating Profit])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Anchor
+		lineageTag: e3a5f623-29b8-4157-b257-8bb3997e00dc
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Avg Operating Margin' = AVERAGE('Data Sales Adidas'[Operating Margin])
+		displayFolder: Anchor
+		lineageTag: 3e0bda50-cf4c-4cdb-bc00-15172f61e840
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Trans Count' = COUNTROWS('Data Sales Adidas')
+		formatString: 0
+		displayFolder: Anchor
+		lineageTag: fa056033-fbc2-4a42-a4be-664ee18a9975
+
+	measure SalesYTD = CALCULATE([Total_Sales], DATESYTD('Calendar'[Date]))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: TI
+		lineageTag: d188ba37-6ef2-4c65-a15c-60371ac57e6c
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure ProfitYTD = CALCULATE([Profit], DATESYTD('Calendar'[Date]))
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		displayFolder: TI
+		lineageTag: fcd7c0ef-5706-4c12-b917-80717b9ea2d3
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-PT"}
+
+	measure ProfitMOM =
+			
+			VAR Previous_Month = CALCULATE([Profit], DATEADD('Calendar'[Date],-1, MONTH))
+			VAR Current_Month = [Profit]
+			RETURN
+			IF(AND(Current_Month, Previous_Month), Current_Month / Previous_Month - 1)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
+		lineageTag: f58653ab-4c86-423c-97c0-445afe15e0ba
+
+	measure SalesMOM =
+			
+			VAR Previous_Month = CALCULATE('Data Sales Adidas'[Total_Sales], DATEADD('Calendar'[Date],-1, MONTH))
+			VAR Current_Month = [Total_Sales]
+			RETURN
+			IF(AND(Current_Month, Previous_Month), Current_Month / Previous_Month - 1)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
+		lineageTag: eab0718d-1250-42a0-b6b6-c7472c7eab30
+
+	measure TransCountMOM =
+			
+			VAR Previous_Month = CALCULATE([Trans Count], DATEADD('Calendar'[Date],-1, MONTH))
+			VAR Current_Month = [Trans Count]
+			RETURN
+			IF(AND(Current_Month, Previous_Month), Current_Month / Previous_Month - 1)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
+		lineageTag: ed281d41-cd57-416c-be2e-90c74486f44f
+
+	measure UnitsSoldMOM =
+			
+			VAR Previous_Month = CALCULATE([Total Units sold], DATEADD('Calendar'[Date],-1, MONTH))
+			VAR Current_Month = [Total Units sold]
+			RETURN
+			IF(AND(Current_Month, Previous_Month), Current_Month / Previous_Month - 1)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
+		lineageTag: 60c1bbe3-2961-4598-b383-a924811e69d2
+
+	measure UnitsSoldYOY =
+			
+			VAR Previous_Year = CALCULATE([Total Units sold], DATEADD('Calendar'[Date],-1, YEAR))
+			VAR Current_Year = [Total Units sold]
+			RETURN
+			IF(AND(Current_Year, Previous_Year), Current_Year / Previous_Year - 1)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
+		lineageTag: db711f67-689c-4831-85e7-6ffad50b30ba
+
+	measure ProfitYOY =
+			
+			VAR Previous_Year = CALCULATE([Profit], DATEADD('Calendar'[Date],-1, YEAR))
+			VAR Current_Year = [Profit]
+			RETURN
+			IF(AND(Current_Year, Previous_Year), Current_Year / Previous_Year - 1)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
+		lineageTag: 3244f670-2053-4a2c-b577-a81cf4ee8865
+
+	measure SalesYOY =
+			
+			VAR Previous_Year = CALCULATE('Data Sales Adidas'[Total_Sales], DATEADD('Calendar'[Date],-1, YEAR))
+			VAR Current_Year = [Total_Sales]
+			RETURN
+			IF(AND(Current_Year, Previous_Year), Current_Year / Previous_Year - 1)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
+		lineageTag: b741ee9c-4bf7-4d27-a6f6-18a1c1e49430
+
+	measure TransCountYOY =
+			
+			VAR Previous_Year = CALCULATE([Trans Count], DATEADD('Calendar'[Date],-1, YEAR))
+			VAR Current_Year = [Trans Count]
+			RETURN
+			IF(AND(Current_Year, Previous_Year), Current_Year / Previous_Year - 1)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Variance
+		lineageTag: de68c11d-3408-46d4-9826-9873c35bb45e
+
+	column Retailer
+		dataType: string
+		lineageTag: 754ac4b3-a520-4d57-ac94-d363abb2092c
+		summarizeBy: none
+		sourceColumn: Retailer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Retailer ID'
+		dataType: string
+		lineageTag: 3a6a5b38-de20-4789-86e2-b9245b41e937
+		summarizeBy: none
+		sourceColumn: Retailer ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a5b81cca-df09-427d-9774-31846ae46a26
+		summarizeBy: none
+		sourceColumn: Invoice Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Location Key'
+		dataType: string
+		lineageTag: ba0200db-670a-4aa2-a43a-752b59b897d0
+		summarizeBy: none
+		sourceColumn: Location Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: 51c5ea4c-7f4a-4fb7-9b76-d7dec75c6a61
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Price per Unit'
+		dataType: double
+		lineageTag: 5f6dcb1a-4271-4b10-8beb-954f76394d8e
+		summarizeBy: sum
+		sourceColumn: Price per Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Units Sold'
+		dataType: int64
+		formatString: 0
+		lineageTag: ef5f0dfd-69db-49d8-8001-4e2d40699e16
+		summarizeBy: sum
+		sourceColumn: Units Sold
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Sales'
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: f586d1ed-117b-4480-8783-f11926a499fc
+		summarizeBy: sum
+		sourceColumn: Total Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-PT"}
+
+	column 'Operating Profit'
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: 187edec7-4adb-4be5-913c-d0e47045b639
+		summarizeBy: sum
+		sourceColumn: Operating Profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-PT"}
+
+	column 'Operating Margin'
+		dataType: double
+		lineageTag: 8ae67604-9632-4410-b793-415a19dcec42
+		summarizeBy: sum
+		sourceColumn: Operating Margin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales Method'
+		dataType: string
+		lineageTag: 17787cba-4701-484c-9e47-6c3cc32e6cba
+		summarizeBy: none
+		sourceColumn: Sales Method
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Data Sales Adidas' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Ladislau André\OneDrive - University of the People\Documentos\Power BI Course Resources-20241028T211906Z-001\Power BI Course Resources\Adidas US Datasets.xlsx"), null, true),
+				    #"Data Sales Adidas_Sheet" = Source{[Item="Data Sales Adidas",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"Data Sales Adidas_Sheet",{{"Column1", type text}, {"Column2", type any}, {"Column3", type any}, {"Column4", type text}, {"Column5", type text}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type text}}),
+				    #"Removed Top Rows" = Table.Skip(#"Changed Type",4),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Retailer", type text}, {"Retailer ID", type text}, {"Invoice Date", type date}, {"Location Key", type text}, {"Product", type text}, {"Price per Unit", type number}, {"Units Sold", Int64.Type}, {"Total Sales", type number}, {"Operating Profit", type number}, {"Operating Margin", type number}, {"Sales Method", type text}}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Changed Type1",{{"Total Sales", Currency.Type}, {"Operating Profit", Currency.Type}, {"Operating Margin", Percentage.Type}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

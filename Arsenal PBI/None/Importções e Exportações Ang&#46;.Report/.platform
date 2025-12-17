@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Importções e Exportações Ang."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c94ded34-e50d-a1c5-4b95-87ae444909b3"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Animal Shelter"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "339f5e14-c3cd-9a07-46e1-b1117f6221bd"
+  }
+}

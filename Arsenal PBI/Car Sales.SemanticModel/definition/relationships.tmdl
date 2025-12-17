@@ -1,0 +1,5 @@
+relationship 12a6a6e4-a347-4263-934f-962f07eb1675
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Car Sales'.'Nova Data'
+	toColumn: LocalDateTable_ba93f129-a4c6-46b2-85d0-a1f102e2c2c1.Date
+

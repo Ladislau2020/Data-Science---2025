@@ -1,0 +1,114 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.0.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY25SU10",
+      "reportVersionAtImport": {
+        "visual": "2.1.0",
+        "report": "3.0.0",
+        "page": "2.3.0"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY25SU10",
+          "path": "BaseThemes/CY25SU10.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Untitled_design_(1)5095240428873815.jpg",
+          "path": "Untitled_design_(1)5095240428873815.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "Untitled_design_(2)1572462687355234.jpg",
+          "path": "Untitled_design_(2)1572462687355234.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "Create_a_magical,_decorative_b7485202072848721.jpg",
+          "path": "Create_a_magical,_decorative_b7485202072848721.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "17129419525401839286487280284.jpg",
+          "path": "17129419525401839286487280284.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "profile-pic_(1)34038378922410706.png",
+          "path": "profile-pic_(1)34038378922410706.png",
+          "type": "Image"
+        },
+        {
+          "name": "ShannonLindsay_2025060620191847739149153543505.jpg",
+          "path": "ShannonLindsay_2025060620191847739149153543505.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "slindsay_0-17606339725835749456052177265.png",
+          "path": "slindsay_0-17606339725835749456052177265.png",
+          "type": "Image"
+        },
+        {
+          "name": "Screenshot_2025-10-28_1649226093360296699721.png",
+          "path": "Screenshot_2025-10-28_1649226093360296699721.png",
+          "type": "Image"
+        },
+        {
+          "name": "Screenshot_2025-10-28_164813063087342009998.png",
+          "path": "Screenshot_2025-10-28_164813063087342009998.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

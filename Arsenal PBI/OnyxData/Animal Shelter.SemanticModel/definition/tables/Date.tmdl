@@ -1,0 +1,106 @@
+table Date
+	lineageTag: 6e49ad49-40f3-449d-8586-388b04cbf2e2
+
+	column Date
+		formatString: General Date
+		lineageTag: 746a62e2-d423-4525-b819-1dce903497d8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 6e5d8e88-272a-4a48-a844-fa3aa5aff885
+			defaultHierarchy: LocalDateTable_c38b5ed9-6c05-4f9b-9d3f-6a8f8fdab34a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: 6065e928-7702-474f-ba11-aaa583d4d5c2
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: 9deabb82-63f9-4375-a13c-041f9f700a54
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: ffb44c26-1fb0-46dd-a7a6-4d7a2ee326b5
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: 64860af4-ee27-45da-88c3-915dd13fc8fb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+		sortByColumn: QuarterNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekdayNo
+		formatString: 0
+		lineageTag: b8db14a2-c144-410a-b3be-aeaee49f0c96
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [WeekdayNo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weekday
+		lineageTag: 2ccea4e0-630f-497e-8eef-d7f394b6ca86
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekday]
+		sortByColumn: WeekdayNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterNo
+		formatString: 0
+		lineageTag: 4cfe51fc-789c-4818-8338-6539222e6529
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [QuarterNo]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = calculated
+		mode: import
+		source =
+				
+				VAR Max_Date =
+				    YEAR ( MAX ('Animal Shelter'[Outcome Date]))
+				VAR Min_Date =
+				    YEAR ( MIN ('Animal Shelter'[Intake Date]) )
+				RETURN
+				    ADDCOLUMNS (
+				        FILTER (
+				            CALENDARAUTO (),
+				            YEAR ( [Date] ) >= Min_Date
+				                && YEAR ( [Date] ) <= Max_Date
+				        ),
+				        "Year", YEAR ( [Date] ),
+				        "QuarterNo", QUARTER([Date]),
+				        "Quarter", FORMAT ( [Date], "\QQ" ),
+				        "Month Number", MONTH ( [Date] ),
+				        "Month", FORMAT ( [Date], "mmmm" ),
+				        "WeekdayNo", WEEKDAY([Date]),
+				        "Weekday", FORMAT([Date], "DDD")
+				    )
+
+	annotation PBI_Id = b24f9f36412f4b82963b65a83f6934f3
+

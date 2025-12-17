@@ -1,0 +1,50 @@
+table Season
+	lineageTag: 445a12ac-27ee-4084-a84a-570d6259100d
+
+	column Season
+		lineageTag: cec62e8c-0692-408b-88fa-5ee9ae442867
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Season Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Season Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Fields'
+		isHidden
+		lineageTag: 45b0074e-1303-4844-b6f4-fb160b5584a1
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Season Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Order'
+		isHidden
+		formatString: 0
+		lineageTag: eb822839-8bb2-4b92-a60a-f6663e2b2a4f
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Season = calculated
+		mode: import
+		source =
+				{
+				    ("Year", NAMEOF('Date'[Year]), 0),
+				    ("Quarter", NAMEOF('Date'[Quarter]), 1),
+				    ("Month", NAMEOF('Date'[Month]), 2),
+				    ("Weekday", NAMEOF('Date'[Weekday]), 3)
+				}
+
+	annotation PBI_Id = 0951437d20cf437bb3363ed24bbb3a93
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Animal Shelter"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "47709d48-19ad-b7dd-48ef-eae163f42e67"
+  }
+}

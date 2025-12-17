@@ -1,0 +1,24 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-PT
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.116.966.0 (23.04)
+
+annotation PBI_QueryOrder = ["Exportações","Importações"]
+
+ref table DateTableTemplate_7f460025-c6f6-438e-9ec3-ffb1144df731
+ref table Exportações
+ref table Importações
+ref table Data
+ref table LocalDateTable_09968f60-3875-43fe-8382-ef434cb6046a
+ref table LocalDateTable_d91a1465-d419-404d-852c-c8e8258c1b22
+ref table LocalDateTable_2d8c0525-4ee3-41de-b945-fab9b0795f7a
+
+ref cultureInfo en-US
+

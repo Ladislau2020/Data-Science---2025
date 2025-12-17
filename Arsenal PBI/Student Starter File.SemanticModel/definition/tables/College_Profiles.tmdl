@@ -1,0 +1,202 @@
+/// The College_Profiles table provides a comprehensive overview of Fabricland’s higher education institutions.
+table College_Profiles
+	lineageTag: d3baa6c8-4b7b-4da9-8829-dd45f1576678
+
+	column CollegeID
+		dataType: string
+		lineageTag: 6999029b-528e-4c08-ad31-fb7708e9937b
+		summarizeBy: none
+		sourceColumn: CollegeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CollegeName
+		dataType: string
+		lineageTag: 0cd886cb-390c-4250-896e-c57614fb35de
+		summarizeBy: none
+		sourceColumn: CollegeName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Kingdom
+		dataType: string
+		lineageTag: ae19a834-622a-46fb-92be-8582cb2efdc2
+		summarizeBy: none
+		sourceColumn: Kingdom
+
+		annotation SummarizationSetBy = Automatic
+
+	column AdmissionDifficulty
+		dataType: string
+		lineageTag: fd65fb74-50d6-4f1e-a03f-a554785f16d7
+		summarizeBy: none
+		sourceColumn: AdmissionDifficulty
+
+		annotation SummarizationSetBy = Automatic
+
+	column TuitionFee
+		dataType: int64
+		formatString: 0
+		lineageTag: 2194613e-2022-4908-974d-f6a0d389090b
+		summarizeBy: none
+		sourceColumn: TuitionFee
+
+		annotation SummarizationSetBy = Automatic
+
+	column MagicScore
+		dataType: int64
+		formatString: 0
+		lineageTag: 1beebc30-c085-4fdf-9c07-dc38fb714d50
+		summarizeBy: none
+		sourceColumn: MagicScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column CampusType
+		dataType: string
+		lineageTag: ae7b505c-ecec-439c-8c66-bd6c2dab5268
+		summarizeBy: none
+		sourceColumn: CampusType
+
+		annotation SummarizationSetBy = Automatic
+
+	column MagicFocusArea
+		dataType: string
+		lineageTag: e882bc72-3030-4aff-9b83-db3a623fa372
+		summarizeBy: none
+		sourceColumn: MagicFocusArea
+
+		annotation SummarizationSetBy = Automatic
+
+	column HousingQuality
+		dataType: int64
+		formatString: 0
+		lineageTag: 208b37b1-bf70-4417-9a68-8f2f1f732793
+		summarizeBy: none
+		sourceColumn: HousingQuality
+
+		annotation SummarizationSetBy = Automatic
+
+	column FacilitiesRating
+		dataType: int64
+		formatString: 0
+		lineageTag: d2cad38b-a88f-48a9-a5df-b9fb0f432b71
+		summarizeBy: none
+		sourceColumn: FacilitiesRating
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClubsAndOrganizations
+		dataType: int64
+		formatString: 0
+		lineageTag: 87f0e9bb-64b4-43ad-b4d1-1fb9bd20d826
+		summarizeBy: none
+		sourceColumn: ClubsAndOrganizations
+
+		annotation SummarizationSetBy = Automatic
+
+	column StudentSupportRating
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f5c446c-eb8b-4e27-aded-d9e4f408a129
+		summarizeBy: none
+		sourceColumn: StudentSupportRating
+
+		annotation SummarizationSetBy = Automatic
+
+	column OverallHappiness
+		dataType: double
+		lineageTag: 933ab29a-708d-49af-b1c0-391097a79198
+		summarizeBy: none
+		sourceColumn: OverallHappiness
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AvgPlacementRate
+		dataType: double
+		lineageTag: a5408baf-2435-41d2-afbc-a810fadfd196
+		summarizeBy: none
+		sourceColumn: AvgPlacementRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AvgStartingSalary
+		dataType: int64
+		formatString: 0
+		lineageTag: a8f4f330-b484-4165-a67f-89acea098c5d
+		summarizeBy: none
+		sourceColumn: AvgStartingSalary
+
+		annotation SummarizationSetBy = Automatic
+
+	column GuildConnections
+		dataType: int64
+		formatString: 0
+		lineageTag: 2da0513a-cd6b-486c-9e31-c98209890f73
+		summarizeBy: none
+		sourceColumn: GuildConnections
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlumniSatisfaction
+		dataType: double
+		lineageTag: 7e524be8-3ac8-4d48-9257-35875791cbfe
+		summarizeBy: none
+		sourceColumn: AlumniSatisfaction
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TopGuilds
+		dataType: string
+		lineageTag: 936215df-f0db-41a7-9f2d-102cae432966
+		summarizeBy: none
+		sourceColumn: TopGuilds
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScholarshipAvailability
+		dataType: string
+		lineageTag: 5e3e299b-df6a-4146-bb84-328e6af77e86
+		summarizeBy: none
+		sourceColumn: ScholarshipAvailability
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiversityIndex
+		dataType: double
+		lineageTag: 4964e868-d095-4c5b-819a-540f522320b8
+		summarizeBy: none
+		sourceColumn: DiversityIndex
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CampusEventsPerYear
+		dataType: int64
+		formatString: 0
+		lineageTag: b323d2c5-3780-49b3-ac2a-b073471404ec
+		summarizeBy: none
+		sourceColumn: CampusEventsPerYear
+
+		annotation SummarizationSetBy = Automatic
+
+	partition College_Profiles = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\laksh\OneDrive\Desktop\Fabric Days 2025\The College Quest in Fabricland Dataset.xlsx"), null, true),
+				    College_Profiles_Sheet = Source{[Item="College_Profiles",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(College_Profiles_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CollegeID", type text}, {"CollegeName", type text}, {"Kingdom", type text}, {"AdmissionDifficulty", type text}, {"TuitionFee", Int64.Type}, {"MagicScore", Int64.Type}, {"CampusType", type text}, {"MagicFocusArea", type text}, {"HousingQuality", Int64.Type}, {"FacilitiesRating", Int64.Type}, {"ClubsAndOrganizations", Int64.Type}, {"StudentSupportRating", Int64.Type}, {"OverallHappiness", type number}, {"AvgPlacementRate", type number}, {"AvgStartingSalary", Int64.Type}, {"GuildConnections", Int64.Type}, {"AlumniSatisfaction", type number}, {"TopGuilds", type text}, {"ScholarshipAvailability", type text}, {"DiversityIndex", type number}, {"CampusEventsPerYear", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "a1b01ef60588485cea33",
+  "position": {
+    "x": 34.043619893084553,
+    "y": 311.06905650316651,
+    "z": 5000,
+    "height": 259.29086833518619,
+    "width": 406.77626187147473,
+    "tabOrder": 3500
+  },
+  "visualGroup": {
+    "displayName": "Contact and download buttons",
+    "groupMode": "ScaleMode"
+  }
+}

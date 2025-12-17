@@ -1,0 +1,67 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "d928c3a03eac45520c76",
+  "position": {
+    "x": 761.13300492610847,
+    "y": 374.7192118226601,
+    "z": 6000,
+    "height": 89,
+    "width": 186,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Lakshmi Ponnurasan",
+                    "textStyle": {
+                      "fontSize": "14pt",
+                      "color": "#154734"
+                    },
+                    "url": "https://www.linkedin.com/in/santhanalakshmip/"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Data Analyst-"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Missouri University of Science & Technology"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

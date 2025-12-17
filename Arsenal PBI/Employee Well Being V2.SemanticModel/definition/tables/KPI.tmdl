@@ -1,0 +1,51 @@
+table KPI
+	lineageTag: 646c4715-7766-4818-bb5a-623a5ff25f7a
+
+	column KPI
+		lineageTag: 4c73fbd1-d499-4f74-bc72-ade323182d04
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'KPI Order'
+
+		relatedColumnDetails
+			groupByColumn: 'KPI Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'KPI Fields'
+		isHidden
+		lineageTag: 0e17c54d-defd-476a-9858-d91e84ecc1b7
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'KPI Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'KPI Order'
+		isHidden
+		formatString: 0
+		lineageTag: 43de83ed-646f-4618-aadf-f6891a86b53c
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition KPI = calculated
+		mode: import
+		source =
+				{
+				    ("% Mental health", NAMEOF('Employees'[% Mental health]), 0),
+				    ("% Physical Issues", NAMEOF('Employees'[% Physical Issues]), 1),
+				    ("% BurnOut", NAMEOF('Employees'[% BurnOut]), 2),
+				    ("% Good WLB", NAMEOF('Employees'[% Good WLB]), 3),
+				    ("% High SIS", NAMEOF('Employees'[% High SIS]), 4)
+				}
+
+	annotation PBI_Id = b894ae0fe428454d89df1a1925b4d623
+

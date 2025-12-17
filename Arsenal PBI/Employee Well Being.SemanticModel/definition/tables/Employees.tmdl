@@ -1,0 +1,291 @@
+table Employees
+	lineageTag: 69b754a9-9099-4b2c-a9ca-2a63408ae513
+
+	measure '% Good WLB' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        [Sample],
+			        Employees[Work_Life_Balance_Score] > 2
+			    ),
+			    [Sample],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: cf5d0f45-9d43-4dbc-aa2f-3c9a8bfc7086
+
+	measure Sample = COUNTROWS(Employees)
+		formatString: 0
+		lineageTag: f730b45f-c5b9-4080-a97e-e5459127434c
+
+	measure '% BurnOut' =
+			
+			DIVIDE(
+			    CALCULATE([Sample], Employees[Burnout_Level]= "High"),
+			    [Sample],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d5ee61ad-f367-4ea9-96cc-82c72eb8700d
+
+	measure '% Mental health' =
+			
+			DIVIDE(
+			    CALCULATE([Sample], Employees[Mental_Health_Status] <> "None"),
+			    [Sample],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f5c7ee9f-9801-4649-9469-f6dfa9cb2968
+
+	measure '% High SIS' =
+			
+			DIVIDE(
+			    CALCULATE([Sample], Employees[Social_Isolation_Score] > 3),
+			    [Sample],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 69f09555-257c-43b5-8e27-ee8eb597bfc1
+
+	measure '% Physical Issues' =
+			
+			DIVIDE(
+			    CALCULATE([Sample], Employees[Physical_Health_Issues] <> "None"),
+			    [Sample],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 73f6cd66-0dd6-4894-a746-ccecc7d3dc94
+
+	measure 'WLB Score Rating star rating' =
+			
+			VAR __MAX_NUMBER_OF_STARS = 5
+			VAR __MIN_RATED_VALUE = 1
+			VAR __MAX_RATED_VALUE = 5
+			VAR __BASE_VALUE = AVERAGE(Employees[Work_Life_Balance_Score])
+			VAR __NORMALIZED_BASE_VALUE =
+				MIN(
+					MAX(
+						DIVIDE(
+							__BASE_VALUE - __MIN_RATED_VALUE,
+							__MAX_RATED_VALUE - __MIN_RATED_VALUE
+						),
+						0
+					),
+					1
+				)
+			VAR __STAR_RATING = ROUND(__NORMALIZED_BASE_VALUE * __MAX_NUMBER_OF_STARS, 0)
+			RETURN
+				IF(
+					NOT ISBLANK(__BASE_VALUE),
+					REPT(UNICHAR(9733), __STAR_RATING)
+						& REPT(UNICHAR(9734), __MAX_NUMBER_OF_STARS - __STAR_RATING)
+				)
+		lineageTag: 1996a6ae-ddae-4d68-bcb6-122ee7974e17
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 45262c06-3c6a-4e59-b701-605c7e556c8c
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Employees","TableItemName":"Age Group","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column Gender
+		dataType: string
+		lineageTag: dd8d13e5-ba05-49ce-b507-fd503e0d9067
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 4aeb6141-2668-4887-9ed1-79c3cd51586d
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Industry
+		dataType: string
+		lineageTag: 41f55465-ab76-4a65-b78b-05eb6f97def8
+		summarizeBy: none
+		sourceColumn: Industry
+
+		annotation SummarizationSetBy = Automatic
+
+	column Job_Role
+		dataType: string
+		lineageTag: 7a5b2861-8609-4c7f-84ec-868242d6eb44
+		summarizeBy: none
+		sourceColumn: Job_Role
+
+		annotation SummarizationSetBy = Automatic
+
+	column Work_Arrangement
+		dataType: string
+		lineageTag: 0e3a1dcc-e2a4-45d0-bf39-c52f8e24719f
+		summarizeBy: none
+		sourceColumn: Work_Arrangement
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hours_Per_Week
+		dataType: int64
+		formatString: 0
+		lineageTag: b11d3fe8-d0e7-40aa-a2bb-d655effd9e73
+		summarizeBy: sum
+		sourceColumn: Hours_Per_Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mental_Health_Status
+		dataType: string
+		lineageTag: 9c397214-5743-48f2-b61e-e528c126744f
+		summarizeBy: none
+		sourceColumn: Mental_Health_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Burnout_Level
+		dataType: string
+		lineageTag: 8bc90cbc-ea1e-4bd1-8766-7977549bc36d
+		summarizeBy: none
+		sourceColumn: Burnout_Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column Work_Life_Balance_Score
+		dataType: int64
+		formatString: 0
+		lineageTag: a6a04a34-30dd-43f3-a2d5-f52f328aa393
+		summarizeBy: sum
+		sourceColumn: Work_Life_Balance_Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column Physical_Health_Issues
+		dataType: string
+		lineageTag: e070d7a9-f730-4ede-84c6-e3c6c33c909d
+		summarizeBy: none
+		sourceColumn: Physical_Health_Issues
+
+		annotation SummarizationSetBy = Automatic
+
+	column Social_Isolation_Score
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cb11b57-0d29-40f0-a661-e368672e2610
+		summarizeBy: sum
+		sourceColumn: Social_Isolation_Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column Salary_Range
+		dataType: string
+		lineageTag: 3307c3e6-780a-47a4-9314-e064573e55f1
+		summarizeBy: none
+		sourceColumn: Salary_Range
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age Group' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Employees'[Age]),
+				"(Blank)",
+				'Employees'[Age] IN {22,
+					23,
+					24},
+				"<25",
+				'Employees'[Age] IN {25,
+					26,
+					27,
+					28,
+					29,
+					30,
+					31,
+					32,
+					33,
+					34},
+				"25-34",
+				'Employees'[Age] IN {35,
+					36,
+					37,
+					38,
+					39,
+					40,
+					41,
+					42,
+					43,
+					44},
+				"35-44",
+				'Employees'[Age] IN {45,
+					46,
+					47,
+					48,
+					49,
+					50,
+					51,
+					52,
+					53,
+					54},
+				"45-54",
+				'Employees'[Age] IN {55,
+					56,
+					57,
+					58,
+					59,
+					60,
+					61,
+					62,
+					63,
+					64,
+					65},
+				"55+",
+				"Other"
+			)
+		formatString: 0
+		lineageTag: feda2c89-a772-4f95-a02a-063701ae2038
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Employees"
+				          }
+				        },
+				        "Property": "Age"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"e","Entity":"Employees"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Age"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"<25","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Age"}}],"Values":[[{"Literal":{"Value":"22L"}}],[{"Literal":{"Value":"23L"}}],[{"Literal":{"Value":"24L"}}]]}}},{"DisplayName":"25-34","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Age"}}],"Values":[[{"Literal":{"Value":"25L"}}],[{"Literal":{"Value":"26L"}}],[{"Literal":{"Value":"27L"}}],[{"Literal":{"Value":"28L"}}],[{"Literal":{"Value":"29L"}}],[{"Literal":{"Value":"30L"}}],[{"Literal":{"Value":"31L"}}],[{"Literal":{"Value":"32L"}}],[{"Literal":{"Value":"33L"}}],[{"Literal":{"Value":"34L"}}]]}}},{"DisplayName":"35-44","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Age"}}],"Values":[[{"Literal":{"Value":"35L"}}],[{"Literal":{"Value":"36L"}}],[{"Literal":{"Value":"37L"}}],[{"Literal":{"Value":"38L"}}],[{"Literal":{"Value":"39L"}}],[{"Literal":{"Value":"40L"}}],[{"Literal":{"Value":"41L"}}],[{"Literal":{"Value":"42L"}}],[{"Literal":{"Value":"43L"}}],[{"Literal":{"Value":"44L"}}]]}}},{"DisplayName":"45-54","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Age"}}],"Values":[[{"Literal":{"Value":"45L"}}],[{"Literal":{"Value":"46L"}}],[{"Literal":{"Value":"47L"}}],[{"Literal":{"Value":"48L"}}],[{"Literal":{"Value":"49L"}}],[{"Literal":{"Value":"50L"}}],[{"Literal":{"Value":"51L"}}],[{"Literal":{"Value":"52L"}}],[{"Literal":{"Value":"53L"}}],[{"Literal":{"Value":"54L"}}]]}}},{"DisplayName":"55+","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Age"}}],"Values":[[{"Literal":{"Value":"55L"}}],[{"Literal":{"Value":"56L"}}],[{"Literal":{"Value":"57L"}}],[{"Literal":{"Value":"58L"}}],[{"Literal":{"Value":"59L"}}],[{"Literal":{"Value":"60L"}}],[{"Literal":{"Value":"61L"}}],[{"Literal":{"Value":"62L"}}],[{"Literal":{"Value":"63L"}}],[{"Literal":{"Value":"64L"}}],[{"Literal":{"Value":"65L"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Employees = m
+		mode: import
+		source =
+				let
+				    Source = post_pandemic_remote_work_health_impact_2025,
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"Survey_Date"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Columns", each true)
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

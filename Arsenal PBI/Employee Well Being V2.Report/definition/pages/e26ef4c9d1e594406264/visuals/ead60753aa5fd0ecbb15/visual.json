@@ -1,0 +1,334 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "ead60753aa5fd0ecbb15",
+  "position": {
+    "x": 232.31850117096016,
+    "y": 161.87353629976579,
+    "z": 6000,
+    "height": 293.77049180327867,
+    "width": 515.59718969555036,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "PBI_CV_73744D90_4DC9_4F18_8BA5_EE8FA5C98035",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Employees"
+                    }
+                  },
+                  "Property": "% Mental health"
+                }
+              },
+              "queryRef": "Employees.% Mental health",
+              "nativeQueryRef": "% Mental health",
+              "displayName": "% Mental health"
+            }
+          ],
+          "fieldParameters": [
+            {
+              "parameterExpr": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "KPI"
+                    }
+                  },
+                  "Property": "KPI"
+                }
+              },
+              "index": 0,
+              "length": 1
+            }
+          ]
+        },
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Employees"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "Employees.Region",
+              "nativeQueryRef": "Region"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Employees"
+                  }
+                },
+                "Property": "% Mental health"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "Chart": [
+        {
+          "properties": {
+            "seriesColors": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"% BurnOut\":\"#6600CC\"}'"
+                }
+              }
+            },
+            "markDict": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"Fact\":{\"elements\":[{\"name\":\"text1\",\"primative\":{\"text\":\"Text\",\"foreground\":\"#000\",\"type\":6,\"sizingMode\":0,\"fontSize\":36,\"fontStyle\":\"Normal\",\"fontFamily\":\"Segoe UI\",\"fontWeight\":\"Normal\",\"horizontalAlign\":2,\"verticalAlign\":2},\"displayMode\":0,\"horizontalAlignment\":0,\"verticalAlignment\":0,\"width\":{\"unit\":1,\"value\":100},\"height\":{\"unit\":1,\"value\":100},\"margin\":{\"left\":{\"unit\":1,\"value\":0},\"right\":{\"unit\":1,\"value\":0},\"top\":{\"unit\":1,\"value\":0},\"bottom\":{\"unit\":1,\"value\":0}},\"positionBound\":0,\"emptyFill\":\"#CCCCCC\",\"valueFill\":\"#01B8AA\",\"strokeWidth\":0,\"itemCountByType\":0,\"breadthItemCount\":1,\"useValueFill\":false}],\"bindings\":[{\"dataPropertyName\":\"[%AUTO%]\",\"targetName\":\"text1.primitive\",\"targetPropertyName\":\"text\",\"converterSettings\":{\"dataPropertyName\":\"[%AUTO%]\"}}]},\"Column\":{\"elements\":[{\"name\":\"shape2\",\"positionBound\":0,\"horizontalAlignment\":0,\"verticalAlignment\":0,\"margin\":{\"left\":{\"unit\":1,\"value\":0},\"right\":{\"unit\":1,\"value\":0},\"top\":{\"unit\":1,\"value\":0},\"bottom\":{\"unit\":1,\"value\":0}},\"width\":{\"unit\":1,\"value\":100},\"height\":{\"unit\":1,\"value\":100},\"displayMode\":0,\"dataValue\":0.68,\"ignoreEmptyFill\":true,\"emptyFill\":\"#CCCCCC\",\"valueFill\":\"#01B8AA\",\"stroke\":\"undefined\",\"strokeWidth\":0,\"itemCountByType\":0,\"breadthItemCount2\":1,\"depthItemCount2\":1,\"breadthItemCount\":1,\"direction\":1,\"keepRatio\":false,\"compactItems\":false,\"showPartialItem\":true,\"hasDirection\":true,\"enableValueTint\":true,\"enableEmptyTint\":false,\"enableItemBackground\":false,\"itemBackground\":\"gray\",\"enableItemBackgroundRoundCorner\":false,\"primative\":{\"type\":4,\"data\":{\"mediaType\":1,\"data\":\"M101.439,31.157c-1.826-5.411-5.158-11.537-9.166-15.482c-3.537-3.48-8.279-6.612-12.82-8.368  C74.85,5.526,69.14,4.003,64.212,4.003c-0.134,0-0.269,0.008-0.403,0.01c-0.134-0.002-0.269-0.01-0.403-0.01  c-4.927,0-10.637,1.523-15.24,3.303c-4.542,1.755-9.283,4.887-12.819,8.368c-17.438,17.163-12.484,45.908-1.47,64.958  c5.244,9.07,28.563,40.181,29.933,41.035c0.767,0.479,18.104-23.63,19.812-25.93C96.854,77.913,109.298,54.45,101.439,31.157z   M63.895,52.04c-9.909,0-17.942-7.623-17.942-17.027c0-9.403,8.033-17.026,17.942-17.026s17.942,7.623,17.942,17.026  C81.837,44.417,73.804,52.04,63.895,52.04z\",\"contentBound\":{\"x\":23.9029598236084,\"y\":4.002999782562256,\"width\":79.98356628417969,\"height\":117.67105102539062}}},\"enableTextClip\":false,\"useValueFill\":false}],\"bindings\":[]},\"Bar\":{\"elements\":[{\"name\":\"shape2\",\"positionBound\":0,\"horizontalAlignment\":0,\"verticalAlignment\":0,\"margin\":{\"left\":{\"unit\":1,\"value\":0},\"right\":{\"unit\":1,\"value\":0},\"top\":{\"unit\":1,\"value\":0},\"bottom\":{\"unit\":1,\"value\":0}},\"width\":{\"unit\":1,\"value\":100},\"height\":{\"unit\":1,\"value\":100},\"displayMode\":0,\"dataValue\":0.68,\"ignoreEmptyFill\":true,\"emptyFill\":\"#CCCCCC\",\"valueFill\":\"#01B8AA\",\"stroke\":\"undefined\",\"strokeWidth\":0,\"itemCountByType\":0,\"breadthItemCount2\":1,\"depthItemCount2\":1,\"breadthItemCount\":1,\"direction\":2,\"keepRatio\":false,\"compactItems\":false,\"showPartialItem\":true,\"hasDirection\":true,\"enableValueTint\":true,\"enableEmptyTint\":false,\"enableItemBackground\":false,\"itemBackground\":\"gray\",\"enableItemBackgroundRoundCorner\":false,\"primative\":{\"type\":4,\"data\":{\"mediaType\":1,\"data\":\"M101.439,31.157c-1.826-5.411-5.158-11.537-9.166-15.482c-3.537-3.48-8.279-6.612-12.82-8.368  C74.85,5.526,69.14,4.003,64.212,4.003c-0.134,0-0.269,0.008-0.403,0.01c-0.134-0.002-0.269-0.01-0.403-0.01  c-4.927,0-10.637,1.523-15.24,3.303c-4.542,1.755-9.283,4.887-12.819,8.368c-17.438,17.163-12.484,45.908-1.47,64.958  c5.244,9.07,28.563,40.181,29.933,41.035c0.767,0.479,18.104-23.63,19.812-25.93C96.854,77.913,109.298,54.45,101.439,31.157z   M63.895,52.04c-9.909,0-17.942-7.623-17.942-17.027c0-9.403,8.033-17.026,17.942-17.026s17.942,7.623,17.942,17.026  C81.837,44.417,73.804,52.04,63.895,52.04z\",\"contentBound\":{\"x\":23.9029598236084,\"y\":4.002999782562256,\"width\":79.98356628417969,\"height\":117.67105102539062}}},\"enableTextClip\":false,\"useValueFill\":false}],\"bindings\":[]},\"Line\":{\"elements\":[{\"name\":\"shape01\",\"primative\":{\"type\":4,\"data\":{\"mediaType\":1,\"data\":\"M10,5c0,2.761-2.239,5-5,5S0,7.761,0,5s2.239-5,5-5S10,2.239,10,5z\"}},\"displayMode\":0,\"horizontalAlignment\":2,\"verticalAlignment\":2,\"width\":{\"unit\":0,\"value\":8},\"height\":{\"unit\":0,\"value\":8},\"margin\":{\"left\":{\"unit\":2,\"value\":0},\"right\":{\"unit\":2,\"value\":0},\"top\":{\"unit\":2,\"value\":0},\"bottom\":{\"unit\":2,\"value\":0}},\"positionBound\":0,\"emptyFill\":\"#CCCCCC\",\"valueFill\":\"#01B8AA\",\"strokeWidth\":0,\"itemCountByType\":0,\"breadthItemCount\":1,\"useValueFill\":false}],\"bindings\":[]}}'"
+                }
+              }
+            },
+            "useThemeColors": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "MeasureAsSeries": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "Minimum Value as Origin": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "Legend": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "Type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Column'"
+                }
+              }
+            },
+            "Min Chart Width": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            },
+            "Min Chart Height": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "Grid Line": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "meta": [
+        {
+          "properties": {
+            "schemaVersion": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "keepLayerOrder": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "showFilterRestatementButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showOptionsMenu": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showSeeDataLayoutToggleButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showFocusModeButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showPinButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showDrillDownExpandButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showDrillDownLevelButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showDrillToggleButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showDrillUpButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showDrillRoleSelector": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showVisualErrorButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showVisualWarningButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showVisualInformationButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showSmartNarrativeButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showTooltipButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
